@@ -2,21 +2,94 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>我的第一個網站</title>
+  <title>我的網站 - COC7 專區</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
+      font-family: "Microsoft JhengHei", sans-serif;
+      background: #f2f2f2;
       text-align: center;
       padding: 50px;
     }
     h1 {
-      color: #333;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
+    .navbar {
+      margin-bottom: 40px;
+    }
+    .btn {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin: 5px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+    .btn:hover {
+      background: #2980b9;
+    }
+    .content {
+      display: none;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 60%;
+      margin: 0 auto;
+    }
+    .active {
+      display: block;
     }
   </style>
 </head>
 <body>
-  <h1>哈囉！這是我的網站 🎉</h1>
-  <p>這是一個靜態網站，完全免費。</p>
+  <h1>COC7 規則分類</h1>
+
+  <!-- 五個分類按鈕 -->
+  <div class="navbar">
+    <button class="btn" onclick="showContent('role')">角色創建</button>
+    <button class="btn" onclick="showContent('skill')">技能</button>
+    <button class="btn" onclick="showContent('battle')">戰鬥</button>
+    <button class="btn" onclick="showContent('chase')">追 & 逃</button>
+    <button class="btn" onclick="showContent('san')">SAN</button>
+  </div>
+
+  <!-- 對應內容區塊 -->
+  <div id="role" class="content active">
+    <h2>角色創建</h2>
+    <p>這裡放角色創建的規則與說明。</p>
+  </div>
+
+  <div id="skill" class="content">
+    <h2>技能</h2>
+    <p>這裡放技能相關內容。</p>
+  </div>
+
+  <div id="battle" class="content">
+    <h2>戰鬥</h2>
+    <p>這裡放戰鬥規則與範例。</p>
+  </div>
+
+  <div id="chase" class="content">
+    <h2>追 & 逃</h2>
+    <p>這裡放追逐與逃跑規則。</p>
+  </div>
+
+  <div id="san" class="content">
+    <h2>SAN</h2>
+    <p>這裡放理智檢定的規則。</p>
+  </div>
+
+  <script>
+    function showContent(id) {
+      // 把所有區塊都隱藏
+      document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+      // 顯示被點擊的區塊
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
 </body>
 </html>
