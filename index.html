@@ -227,9 +227,6 @@
       // 切換按鈕狀態
       document.querySelectorAll('.btn').forEach(el => el.classList.remove('active-btn'));
       btn.classList.add('active-btn');
-
-      // 捲動過去
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     const topBtn = document.getElementById('topBtn');
