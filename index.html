@@ -2,62 +2,195 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>我的網站 - COC7 專區</title>
+  <title>時亂TSD房規</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Merriweather&family=UnifrakturCook:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: "Microsoft JhengHei", sans-serif;
-      background: #f2f2f2;
+      font-family: "Merriweather", serif;
+      background: #1b2b2b;
+      color: #e0e0d1;
       text-align: center;
       padding: 50px;
+      scroll-behavior: smooth;
+      position: relative;
+      min-height: 100vh;
     }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('ornate-frame.png') center/cover no-repeat;
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* ===== H1 主標題 ===== */
     h1 {
-      margin-bottom: 30px;
-      color: #2c3e50;
+      margin-bottom: 8px;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 4em;
+      color: #e4f7ec;
+      text-shadow:
+        1px 1px 2px #000,
+        -1px -1px 2px #000;
+      letter-spacing: 4px;
+      transition: text-shadow 0.3s ease;
     }
+    h1:hover {
+      text-shadow:
+        1px 1px 2px #000,
+        -1px -1px 2px #000,
+        0 0 10px rgba(123, 162, 63, 0.9),
+        0 0 20px rgba(123, 162, 63, 0.6);
+    }
+
+    .version-info {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      font-size: 0.85em;
+      font-family: 'Roboto', sans-serif;
+      color: #7ba23f;
+      opacity: 0.9;
+    }
+
+    .subtitle {
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.75em;
+      color: #7a8a85;
+      margin-bottom: 25px;
+      font-style: italic;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-family: 'UnifrakturCook', cursive;
+      color: #cce0d6;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      text-shadow: 
+        0 0 4px rgba(76, 175, 80, 0.3),
+        0 0 6px rgba(123, 162, 63, 0.4);
+    }
+
     .navbar {
       margin-bottom: 40px;
     }
+
+    /* ===== 按鈕效果簡化版 ===== */
     .btn {
-      background: #3498db;
-      color: white;
-      border: none;
-      padding: 12px 20px;
+      background: #2e3d3d;
+      color: #cce0d6;
+      border: 1px solid #4caf50;
+      padding: 10px 18px;
       margin: 5px;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 16px;
-      transition: background 0.3s;
+      font-size: 15px;
+      font-family: 'Merriweather', serif;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
+
+    /* 滑過 hover */
     .btn:hover {
-      background: #2980b9;
+      background: #3f5555;
+      color: #ffffff;
+      border-color: #7ba23f;
     }
+
+    /* 被選中的狀態 (持續深黃綠色) */
+    .btn.active-btn {
+      background: #6b8e23 !important;   /* 深黃綠色 */
+      border-color: #6b8e23 !important;
+      color: #ffffff !important;        /* 白色字清晰 */
+      box-shadow: 0 0 8px rgba(107,142,35,0.6);
+    }
+
+    /* 鍵盤焦點 focus */
+    .btn:focus {
+      outline: none;
+      border-color: #c9a635;
+      box-shadow: 0 0 6px rgba(201,166,53,0.8);
+    }
+
+    /* ===== 內容框 ===== */
     .content {
       display: none;
-      background: white;
+      background: rgba(30, 40, 40, 0.85);
       padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
       width: 60%;
       margin: 0 auto;
+      transition: box-shadow 0.3s ease;
+    }
+    .content:hover {
+      box-shadow: 0 0 14px rgba(123, 162, 63, 0.6),
+                  0 0 18px rgba(79,163,179,0.5);
     }
     .active {
       display: block;
     }
+
+    /* ===== TOP 按鈕效果簡化版 ===== */
+    .top-button {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: none;
+      background: #2e3d3d;
+      color: #d4e4dc;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.5s ease;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 999;
+    }
+    .top-button.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .top-button:hover {
+      background: #3f5555;
+      color: #ffffff;
+      border: 1px solid #7ba23f;
+    }
+    .top-button:focus {
+      outline: none;
+      border: 1px solid #c9a635;
+      box-shadow: 0 0 6px rgba(201,166,53,0.8);
+    }
+
+    @media (max-width: 480px) {
+      .top-button { right: 12px; bottom: 12px; width: 52px; height: 52px; font-size: 12px; }
+      .content { width: 90%; }
+      .version-info { font-size: 0.75em; top: 8px; right: 12px; }
+    }
   </style>
 </head>
 <body>
-  <h1>COC7 規則分類</h1>
+  <div class="version-info">Version 25.Sep.1.0</div>
 
-  <!-- 五個分類按鈕 -->
+  <h1>時亂TSD房規</h1>
+  <p class="subtitle">The rules on this website are extended and customized from COC and are not original creations.</p>
+
   <div class="navbar">
-    <button class="btn" onclick="showContent('role')">角色創建</button>
-    <button class="btn" onclick="showContent('skill')">技能</button>
-    <button class="btn" onclick="showContent('battle')">戰鬥</button>
-    <button class="btn" onclick="showContent('chase')">追 & 逃</button>
-    <button class="btn" onclick="showContent('san')">SAN</button>
+    <button class="btn active-btn" onclick="showContent('role', this)">角色創建</button>
+    <button class="btn" onclick="showContent('skill', this)">技能</button>
+    <button class="btn" onclick="showContent('battle', this)">戰鬥</button>
+    <button class="btn" onclick="showContent('chase', this)">追 & 逃</button>
+    <button class="btn" onclick="showContent('san', this)">SAN 值系統</button>
   </div>
 
-  <!-- 對應內容區塊 -->
   <div id="role" class="content active">
     <h2>角色創建</h2>
     <p>這裡放角色創建的規則與說明。</p>
@@ -83,13 +216,34 @@
     <p>這裡放理智檢定的規則。</p>
   </div>
 
+  <button id="topBtn" class="top-button" aria-label="回到頁面頂端" title="回到頂端">TOP</button>
+
   <script>
-    function showContent(id) {
-      // 把所有區塊都隱藏
+    function showContent(id, btn) {
+      // 切換內容
       document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
-      // 顯示被點擊的區塊
       document.getElementById(id).classList.add('active');
+
+      // 切換按鈕狀態
+      document.querySelectorAll('.btn').forEach(el => el.classList.remove('active-btn'));
+      btn.classList.add('active-btn');
+
+      // 捲動過去
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+
+    const topBtn = document.getElementById('topBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        topBtn.classList.add('show');
+      } else {
+        topBtn.classList.remove('show');
+      }
+    });
+
+    topBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
   </script>
 </body>
 </html>
