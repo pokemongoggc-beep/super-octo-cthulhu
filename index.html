@@ -29,6 +29,7 @@
 
     /* ===== H1 主標題 ===== */
     h1 {
+
       margin-bottom: 8px;
       font-family: 'Cinzel Decorative', serif;
       font-size: 4em;
@@ -38,6 +39,7 @@
         -1px -1px 2px #000;
       letter-spacing: 4px;
       transition: text-shadow 0.3s ease;
+cursor: pointer;
     }
     h1:hover {
       text-shadow:
@@ -79,6 +81,21 @@
     .navbar {
       margin-bottom: 40px;
     }
+
+    h3 {
+  font-size: 30px;                        /* 字體更大，醒目 */
+  font-weight: 700;                        /* 加粗 */
+  color: #e4f7ec;                         /* 使用指定顏色 */
+  margin-bottom: 20px;                     /* 下方間距 */
+  letter-spacing: 2px;                     /* 字母間距，增設計感 */
+  line-height: 1.2;                        /* 行高，保持緊湊但舒適 */
+  text-shadow: 
+}
+
+.navbar {
+  margin-bottom: 50px;                     /* 調整整體版面間距 */
+}
+
 
     /* ===== 按鈕效果簡化版 ===== */
     .btn {
@@ -178,9 +195,10 @@
   </style>
 </head>
 <body>
+
   <div class="version-info">Version 25.Sep.1.0</div>
 
-  <h1>時亂TSD房規</h1>
+  <h1 id="main-title">時亂TSD房規</h1>
   <p class="subtitle">The rules on this website are extended and customized from COC7 and are not original creations.</p>
 
   <div class="navbar">
@@ -212,7 +230,6 @@
     INT(智力)２Ｄ６＋６×５</p>EDU(教育)２Ｄ６＋６×５</p>SIZ(體型)２Ｄ６＋６×５</p>
     <p style="opacity: 0.5">POW(意志)=SAN　POW(意志)÷5=MP　SIZ＋CON÷10=HP　</p>
 <p>&nbsp;</p>
-
     <h2>二、基本資料</h2>
 <p>&nbsp;</p>
     <p>１．玩家<span style="opacity: 0.5;">(ＰＣ本人)</span>名稱or綽號／	創建<span style="opacity: 0.5;">(所扮演的)</span>角色姓名</p>
@@ -223,7 +240,6 @@
     <p>６．出生地／現居地。<span style="opacity: 0.5;">（你需要扮演好你的角色，太特殊的設定可能導致語言不通等問題，可與ＫＰ討論）</p>
     <p>７．相貌特徵簡述<span style="opacity: 0.5;">（須參考、依憑角色的CON+SIZ+APP使其合理）</span></p>
 <p>&nbsp;</p>
-
     <h2>三、年齡影響</h2>
 <p>&nbsp;</p>
 <table border="1" cellspacing="0" cellpadding="8" style="margin: 20px auto; border-collapse: collapse; text-align: center; background: rgba(30, 40, 40, 0.85); color: #e0e0d1; border: 1px solid #4caf50; width: 90%; max-width: 800px;">
@@ -265,14 +281,10 @@
   </tbody>
 </table>
     <p style="opacity: 0.5">※成長骰1D10，高過現有EDU擲1D10進行成長。</p>
-
-
-<p>&nbsp;</p>
-
 <p>&nbsp;</p>
     <h2>四、衍生數值</h2>
 <p>&nbsp;</p>
-    <p>１． MOV移動率：8</p><p>DEX(敏捷)＆STR(力量)＜SIZ(體型)= MOV 7</p><p>DEX(敏捷)＆STR(力量)＞SIZ(體型)= MOV 9</p>
+    <p>１． MOV移動率：8</p><p>DEX(敏捷)＆STR(力量)＜SIZ(體型) = MOV 7</p><p>DEX(敏捷)＆STR(力量)＞SIZ(體型) = MOV 9</p>
 <p>&nbsp;</p>
     <p>２． 體格優勢傷害表：</p>
 <table border="1" cellspacing="0" cellpadding="8" style="margin: 20px auto; border-collapse: collapse; text-align: center; background: rgba(30, 40, 40, 0.85); color: #e0e0d1; border: 1px solid #4caf50; width: 95%; max-width: 850px;">
@@ -353,14 +365,459 @@
           text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">
     ✨恭喜你完成角色創建啦✨
 </p>
+  </div>
+  <div id="skill" class="content">
+    <h2>起始數值</h2>
+    <p style="font-size: 20px;">🧬科學　　⚔️近戰　　🏹遠戰　　🎞️技藝</p>
 
+    <p><!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>技能列表滿版</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    background: #1e1e1e;
+    font-family: 'Zen Kaku Gothic New', 'Microsoft JhengHei', sans-serif;
+    color: #E1EFCC;
+    padding: 30px;
+    text-align: center;
+  }
 
+  /* Toast 提示框 */
+  .toast {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    transform: translateY(20px);
+    background: rgba(46,139,87,0.9);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 999;
+  }
 
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== 技能分類 ===== */
+  .skill-category {
+    background: #2a2a2a;
+    border-radius: 14px;
+    padding: 25px;
+    margin: 20px auto;
+    border-top: 4px solid #3E5740;
+    box-shadow: 0 -2px 12px rgba(46,139,87,0.4);
+  }
+
+  .skill-category h3 {
+    margin: 0 0 20px 0;
+    font-weight: 600;
+    font-size: 22px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  /* ===== 技能按鈕 ===== */
+  .skill-tags button {
+    background: #3a3a3a;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 15px;
+    border: none;
+    color: #f5f5f5;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s, color 0.2s;
+  }
+
+  /* 懸停變色 + 滑鼠手型 */
+  .skill-tags button:hover {
+    background: #3E5740;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .skill-tags button:active {
+    transform: scale(0.95);
+    background: #6b8e23;
+  }
+
+  /* 滿版技能列 */
+  .skill-row, .skill-row-full {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+    max-width: 100%; /* 滿版 */
+    margin: 20px auto;
+  }
+
+  .skill-row .skill-category,
+  .skill-row-full .skill-category {
+    flex: 1;
+    margin: 0;
+    border-radius: 14px;
+    border-top: 4px solid #3E5740;
+    box-shadow: 0 -2px 12px rgba(46,139,87,0.4);
+    padding: 25px;
+  }
+
+  @media (max-width: 600px) {
+    .skill-row, .skill-row-full {
+      flex-direction: column;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="toast" class="toast">✅ 已複製</div>
+
+<script>
+  function copySkill(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      let toast = document.getElementById("toast");
+      toast.classList.add("show");
+      toast.innerText = `✅ 已複製「${text}」`;
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1500);
+    });
+  }
+</script>
+<!-- 1% -->
+<div class="skill-category">
+  <h3>📜 1%</h3>
+  <div class="skill-tags">
+    <button onclick="copySkill('人類學')">人類學</button>
+    <button onclick="copySkill('考古學')">考古學</button>
+    <button onclick="copySkill('天文學🧬')">天文學🧬</button>
+    <button onclick="copySkill('生物學🧬')">生物學🧬</button>
+    <button onclick="copySkill('植物學🧬')">植物學🧬</button>
+    <button onclick="copySkill('化學🧬')">化學🧬</button>
+    <button onclick="copySkill('密碼學🧬')">密碼學🧬</button>
+    <button onclick="copySkill('電子學')">電子學</button>
+    <button onclick="copySkill('鑑識學🧬')">鑑識學🧬</button>
+    <button onclick="copySkill('地質學🧬')">地質學🧬</button>
+    <button onclick="copySkill('外語')">外語</button>
+    <button onclick="copySkill('鎖匠')">鎖匠</button>
+    <button onclick="copySkill('數學🧬')">數學🧬</button>
+    <button onclick="copySkill('醫藥')">醫藥</button>
+    <button onclick="copySkill('氣象學🧬')">氣象學🧬</button>
+    <button onclick="copySkill('操作重機')">操作重機</button>
+    <button onclick="copySkill('藥學🧬')">藥學🧬</button>
+    <button onclick="copySkill('物理學🧬')">物理學🧬</button>
+    <button onclick="copySkill('駕駛')">駕駛</button>
+    <button onclick="copySkill('精神分析')">精神分析</button>
+    <button onclick="copySkill('科學🧬')">科學🧬</button>
+    <button onclick="copySkill('動物學🧬')">動物學🧬</button>
+  </div>
+</div>
+
+<!-- 5% -->
+<div class="skill-category">
+  <h3>⚡ 5%</h3>
+  <div class="skill-tags">
+    <button onclick="copySkill('會計')">會計</button>
+    <button onclick="copySkill('演技🎞️')">演技🎞️</button>
+    <button onclick="copySkill('鑑定')">鑑定</button>
+    <button onclick="copySkill('技藝🎞️')">技藝🎞️</button>
+    <button onclick="copySkill('使用電腦')">使用電腦</button>
+    <button onclick="copySkill('偽裝')">偽裝</button>
+    <button onclick="copySkill('話術')">話術</button>
+    <button onclick="copySkill('美術🎞️')">美術🎞️</button>
+    <button onclick="copySkill('偽造文書🎞️')">偽造文書🎞️</button>
+    <button onclick="copySkill('歷史')">歷史</button>
+    <button onclick="copySkill('法律')">法律</button>
+    <button onclick="copySkill('神祕學')">神祕學</button>
+    <button onclick="copySkill('攝影🎞️')">攝影🎞️</button>
+    <button onclick="copySkill('騎術')">騎術</button>
+    <button onclick="copySkill('鞭⚔️')">鞭⚔️</button>
+  </div>
+</div>
+
+<!-- 10% -->
+<div class="skill-category">
+  <h3>🌏 10%</h3>
+  <div class="skill-tags">
+    <button onclick="copySkill('遠戰🏹')">遠戰🏹</button>
+    <button onclick="copySkill('機槍🏹')">機槍🏹</button>
+    <button onclick="copySkill('重武器🏹')">重武器🏹</button>
+    <button onclick="copySkill('火焰噴射器🏹')">火焰噴射器🏹</button>
+    <button onclick="copySkill('鏈枷⚔️')">鏈枷⚔️</button>
+    <button onclick="copySkill('鏈鋸⚔️')">鏈鋸⚔️</button>
+    <button onclick="copySkill('電器維修')">電器維修</button>
+    <button onclick="copySkill('機械維修')">機械維修</button>
+    <button onclick="copySkill('自然世界')">自然世界</button>
+    <button onclick="copySkill('導航')">導航</button>
+    <button onclick="copySkill('說服')">說服</button>
+    <button onclick="copySkill('巧手')">巧手</button>
+    <button onclick="copySkill('生存')">生存</button>
+    <button onclick="copySkill('追蹤')">追蹤</button>
+    <button onclick="copySkill('心理學')">心理學</button>
+  </div>
+</div>
+
+<!-- 15% -->
+<div class="skill-category">
+  <h3>🎯 15%</h3>
+  <div class="skill-tags">
+    <button onclick="copySkill('弓🏹')">弓🏹</button>
+    <button onclick="copySkill('斧⚔️')">斧⚔️</button>
+    <button onclick="copySkill('絞具')">絞具</button>
+    <button onclick="copySkill('威脅')">威脅</button>
+    <button onclick="copySkill('魅力')">魅力</button>
+  </div>
+</div>
+
+<!-- 20% -->
+<div class="skill-category">
+  <h3>🌊 20%</h3>
+  <div class="skill-tags">
+    <button onclick="copySkill('刀劍⚔️')">刀劍⚔️</button>
+    <button onclick="copySkill('手槍🏹')">手槍🏹</button>
+    <button onclick="copySkill('矛🏹')">矛🏹</button>
+    <button onclick="copySkill('攀爬')">攀爬</button>
+    <button onclick="copySkill('跳躍')">跳躍</button>
+    <button onclick="copySkill('聆聽')">聆聽</button>
+    <button onclick="copySkill('投擲')">投擲</button>
+    <button onclick="copySkill('游泳')">游泳</button>
+    <button onclick="copySkill('隱匿潛行')">隱匿潛行</button>
+    <button onclick="copySkill('車輛駕駛')">車輛駕駛</button>
+    <button onclick="copySkill('圖書館使用')">圖書館使用</button>
+  </div>
+</div>
+
+<!-- 25% 滿版 -->
+<div class="skill-row-full">
+  <div class="skill-category">
+    <h3>💥 25%</h3>
+    <div class="skill-tags">
+      <button onclick="copySkill('近戰⚔️')">近戰⚔️</button>
+      <button onclick="copySkill('步槍🏹')">步槍🏹</button>
+      <button onclick="copySkill('散彈槍🏹')">散彈槍🏹</button>
+      <button onclick="copySkill('識破')">識破</button>
+    </div>
+  </div>
+</div>
+
+<!-- 30% + 敏捷 DEX 滿版並排 -->
+<div class="skill-row">
+  <div class="skill-category">
+    <h3>🩸 30%</h3>
+    <div class="skill-tags">
+      <button onclick="copySkill('急救')">急救</button>
+    </div>
   </div>
 
-  <div id="skill" class="content">
-    <h2>技能</h2>
-    <p>尚未解鎖！</p>
+  <div class="skill-category">
+    <h3>💨 敏捷 (DEX) ÷ 2</h3>
+    <div class="skill-tags">
+      <button onclick="copySkill('閃避')">閃避</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+    <p style="opacity: 0.5">（當你沒有相對專業技能時可以使用總合技能🧬⚔️🏹🎞️的數值÷２進行代骰）</p>
+
+    <p>&nbsp;</p><h2>等級對照</h2><p>&nbsp;</p>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>COC7 技能速查表</title>
+<style>
+/* 美化版極簡表格 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 16px;
+  text-align: center;
+  line-height: 1.6; /* 增加行高，提升易讀性 */
+}
+
+th, td {
+  padding: 12px 10px;
+}
+
+/* 表頭底線改為淡綠色 #C3D941 */
+thead th {
+  border-bottom: 2px solid #C3D941;
+}
+
+/* tbody 每行底線半透明白色 30% */
+tbody tr td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 表頭字加粗 */
+th {
+  font-weight: 600;
+}
+
+/* 表格底部空白 */
+tbody tr:last-child td {
+  border-bottom: none;
+}
+</style>
+</head>
+<body>
+
+<table>
+  <thead>
+    <tr>
+      <th>技能值</th>
+      <th>水準</th>
+      <th>現實</th>
+      <th>俗稱（NPC描寫）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>01–09%</td>
+      <td>幾乎不會</td>
+      <td>外行人亂試</td>
+      <td>生手 / 完全沒經驗</td>
+    </tr>
+    <tr>
+      <td>10–19%</td>
+      <td>初步了解</td>
+      <td>門外漢，但「聽過」</td>
+      <td>新手 / 略懂皮毛</td>
+    </tr>
+    <tr>
+      <td>20–39%</td>
+      <td>基礎訓練</td>
+      <td>普通人自學 / 愛好者</td>
+      <td>業餘 / 偶爾成功</td>
+    </tr>
+    <tr>
+      <td>40–59%</td>
+      <td>熟練使用</td>
+      <td>半專業、熟練工</td>
+      <td>老手 / 能勝任</td>
+    </tr>
+    <tr>
+      <td>60–79%</td>
+      <td>專業人士</td>
+      <td>受過正規訓練</td>
+      <td>專家 / 內行</td>
+    </tr>
+    <tr>
+      <td>80–89%</td>
+      <td>頂尖專家</td>
+      <td>領域內菁英</td>
+      <td>高手 / 技藝高超</td>
+    </tr>
+    <tr>
+      <td>90–95%</td>
+      <td>世界級大師</td>
+      <td>領域頂尖人物</td>
+      <td>大師 / 登峰造極</td>
+    </tr>
+    <tr>
+      <td>96–100%</td>
+      <td>幾乎超越人類極限</td>
+      <td>神乎其技 / 傳奇人物</td>
+      <td>傳奇 / 首屈一指舉世無雙</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
+
+
+
+    <p>&nbsp;</p><h2>技能骰檢定</h2><p style="opacity: 0.5">（視情況、劇本ＫＰ有時會改動大成功與大失敗骰的範圍）</p>
+</p>
+<!-- 乾淨版技能骰檢定說明 -->
+<style>
+  /* 整體容器 */
+  .dice-guide {
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+    font-family: 'Merriweather', serif;
+    color: #E1EFCC;
+    line-height: 1.6;
+  }
+
+  /* 各檢定區塊 */
+  .dice-section {
+    margin-bottom: 20px;
+    padding: 0; /* 無額外背景或邊框 */
+  }
+
+  /* 標題 */
+  .dice-section h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #C3D941; /* 高亮標題 */
+  }
+
+  /* 內容文字 */
+  .dice-section p {
+    margin: 8px 0;
+    font-size: 15px;
+  }
+
+  .dice-section strong {
+    color: #C3D941; /* 高亮關鍵詞 */
+  }
+
+  /* 高亮提示 */
+  .highlight {
+    color: #C3D941;
+  }
+</style>
+
+<div class="dice-guide">
+
+  <div class="dice-section">
+    <h3>基本檢定</h3>
+    <p><strong>成功判定：</strong> <span class="highlight">D100 ≤ 技能值</span></p>
+    <p><strong>大成功 / 大失敗：</strong><br>
+      大成功：01<br>
+      大失敗：96–100（技能 <50%）<br>
+      100（技能 ≥50%）
+    </p>
+    <p><strong>成功等級：</strong><br>
+      普通成功：≤ 技能值<br>
+      困難成功：≤ 技能值一半<br>
+      極難成功：≤ 技能值五分之一
+    </p>
+  </div>
+
+  <div class="dice-section">
+    <h3>對抗檢定</h3>
+    <p>雙方同時檢定，比成功等級 → 高者勝<br>
+      若等級相同 → 數值小者勝
+    </p>
+  </div>
+
+  <div class="dice-section">
+    <h3>技能成長</h3>
+    <p>檢定成功後劃勾，劇本結束 → 投 D100 > 技能值 → 成長 1d10</p>
+  </div>
+
+</div>
+</p>
   </div>
 
   <div id="battle" class="content">
@@ -370,7 +827,7 @@
 
   <div id="chase" class="content">
     <h2>追 & 逃</h2>
-    <p>恭喜你成功逃脫？</p>
+    <p>想逃？</p>
   </div>
 
   <div id="san" class="content">
@@ -404,5 +861,12 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
-</body>
+</body><script>
+  document.getElementById('main-title').addEventListener('click', () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    });
+  });
+</script>
 </html>
