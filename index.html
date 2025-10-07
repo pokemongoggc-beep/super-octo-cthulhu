@@ -193,6 +193,10 @@ cursor: pointer;
       .content { width: 90%; }
       .version-info { font-size: 0.75em; top: 8px; right: 12px; }
     }
+* {
+  caret-color: transparent;
+}
+
   </style>
 </head>
 <body>
@@ -555,7 +559,7 @@ cursor: pointer;
   <div class="skill-tags">
     <button onclick="copySkill('遠戰🏹')">遠戰🏹</button>
     <button onclick="copySkill('機槍🏹')">機槍🏹</button>
-    <button onclick="copySkill('重武器🏹')">重武器🏹</button>
+    <button onclick="copySkill('火箭筒🏹')">火箭筒🏹</button>
     <button onclick="copySkill('火焰噴射器🏹')">火焰噴射器🏹</button>
     <button onclick="copySkill('鏈枷⚔️')">鏈枷⚔️</button>
     <button onclick="copySkill('鏈鋸⚔️')">鏈鋸⚔️</button>
@@ -634,6 +638,10 @@ cursor: pointer;
 </body>
 </html>
     <p style="opacity: 0.5">（當你沒有相對專業技能時可以使用總合技能🧬⚔️🏹🎞️的數值÷２進行代骰）</p>
+
+    <p>&nbsp;</p><h2>創角配點</h2>
+<p style="opacity: 0.9; color: #C3D941; font-weight: bold; font-size: 17px;">職業加點：EDU（教育） × 4 </p>單一技能不得點超過 80% 熟練，且只能點跟職業範圍相關的技能。</p>
+<p style="opacity: 0.9; color: #C3D941; font-weight: bold; font-size: 17px;">興趣加點：INT（智力） × 2 </p>興趣技能不得點超過 70% 熟練，可完全自由分配給任何技能。</p>
 
     <p>&nbsp;</p><h2>等級對照</h2><p>&nbsp;</p>
 <!DOCTYPE html>
@@ -743,8 +751,6 @@ tbody tr:last-child td {
 </body>
 </html>
 
-
-
     <p>&nbsp;</p><h2>技能骰檢定</h2><p style="opacity: 0.5">（視情況、劇本ＫＰ可能改動大成功與大失敗檢定範圍）</p>
 </p>
 <!-- 乾淨版技能骰檢定說明 -->
@@ -801,7 +807,7 @@ tbody tr:last-child td {
     <p><strong>成功等級：</strong><br>
       普通成功：≤ 技能值<br>
       困難成功：≤ 技能值一半<br>
-      極難成功：≤ 技能值五分之一
+      極限成功：≤ 技能值五分之一
     </p>
   </div>
 
@@ -849,10 +855,10 @@ tbody tr:last-child td {
     <p style="opacity: 0.9; color: #E96E67; font-weight: bold; font-size: 17px;"><strong>傷勢影響</strong>：</p>
       <p>負傷（ 50% HP 以上）：輕微懲罰，仍可戰鬥。</p>
       <p>重傷（ 50% 以下 25% HP 以上）：行動受限，可能需要急救。</p>
-<p style="opacity: 0.5">（行動受限=所有關於肢體活動類相關判定-25%）</p>
+<p style="opacity: 0.8; color: #FF5C54"><行動受限=所有關於肢體活動類相關判定-25%></p>
       <p>病危（ 25% HP 以下 ）：立即檢定 CON，失敗即刻進入瀕死。</p>
-<p style="opacity: 0.5">（病危狀態所有行動判定-40%）</p>
-      <p>瀕死（ HP 歸零 ）：立即檢定 CON/END，失敗即死亡。</p>
+<p style="opacity: 0.8; color: #FF5C54"><病危狀態所有行動判定-40%></p>
+      <p>瀕死（ HP 歸零 ）：每回合檢定 CON/END，失敗即死亡。</p>
     </ul>
   </div>
 
@@ -887,12 +893,15 @@ tbody tr:last-child td {
 </style>
 <p>&nbsp;</p>
     <div class="healing-box">
-      <p class="title"><strong>治療與恢復</strong>：</p>
-      <p>1. 自然恢復：隨著時間身體自主癒合，在判斷玩家傷口不會惡化的情況下恢復ＨＰ。</p>
-      <p>2. 急救 / 醫療技能：成功檢定可立即回復部分 HP 以及防止傷勢惡化。</p>
-      <p>3. 藥物或魔法恢復（如適用）：立即補充 HP 或解除狀態異常。</p>
-      <p>4. 長休：去睡覺ｅｘ跑團結束，角色當下處境並不惡劣，下次開機可回復ＨＰ。</p>
+      <p class="title ;  font-size: 14px;>"><strong>治療與恢復</strong>：</p>
+      <p >1. 自然恢復：隨著時間身體自主癒合，在判斷玩家傷口不會惡化的情況下恢復ＨＰ。</p>
+      <p >2. 急救 / 醫療技能：成功檢定可立即回復部分 HP 以及防止傷勢惡化。</p>
+      <p >3. 藥物或魔法恢復（如適用）：立即補充 HP 或解除狀態異常。</p>
+      <p >4. 長休：角色身體停止活動去睡覺、休養、住院等等。</p>
+      <p >- 重傷者想要自然恢復 HP 必須過CON -</p>
 </div>
+<p style="opacity: 0.5 ;font-size: 14px;">＂關機：結束一天的跑團時讓角色去休息，只要當下處境並不惡劣，下次開機可回復ＨＰ。＂</p>
+
 <p>&nbsp;</p>
 
     <h2>回合戰</h2>
@@ -928,9 +937,316 @@ tbody tr:last-child td {
   <p><span class="dot">•</span>執行戰略　<span>（ex. 設陷阱、布陣、掩護）</span></p>
   <p><span class="dot">•</span>逃跑　<span>（骰敏捷（DEX）可能進追逐）</span></p>
   <p><span class="dot">•</span>使用魔法　<span>（消耗MP的行動）</span></p>
-  <p><span class="dot">•</span>其他　<span>（PC想使用某技能或其他舉動）</span></p>
+  <p><span class="dot">•</span>其他　<span>（PC想使用某技能或進行某舉動）</span></p>
+</div>
+    <p style="opacity: 0.5 ;color: #C3D941">※執行某些戰略時不會占用回合，比如大喊趴下、撤退等...</p>
+<p>&nbsp;</p>
+
+<h2 style="color: #F2C5C7;">體格</h2>
+    <p>玩家對體格相差３階以上的目標進行近戰攻擊將自動失效。</p>
+    <p>對體格相差２階的目標需要進行兩次劣勢骰。</p>
+    <p>對體格相差１階的目標需要進行一次劣勢骰。</p>
+    <p>戰略例如擒拿、關節技、使用高度熟練冷兵器等...若PC角色設定跟飾演都非常到位可最高免除兩顆劣勢骰。</p>
+<p style="opacity: 0.5">遠距攻擊命中:體型 -2 以下吃一顆劣勢骰；體型 4 以上贈一顆優勢骰。</p>
+
+<p>&nbsp;</p>
+
+<h2 style="color: #A6A6D2;">偷襲</h2>
+    <p>1.潛行成功：埋伏或悄悄接近目標突襲、遠處狙擊等等。</p>
+    <p>2.突發攻勢：聆聽、心理學、發現失敗時，無防備下突然遭到攻擊。</p>
+<p style="font-weight: bold;    font-size: 17px;">- 偷襲成功可以增加一顆優勢骰/優勢骰可與劣勢骰相互抵銷 -</p>
+<p>&nbsp;</p>
+
+<h2 style="color: #9DDDD2;">反擊</h2>
+    <p>對立擲骰僅限於近戰，遭受遠距離攻擊時無法執行反擊，可以選擇防禦、閃避或找尋掩護。</p>
+    <p>反擊就是所謂對抗骰，優先看成功等級，等級相同ex.都是極限成功，那就直接比較骰出的數字。</p>
+    <p>數字小的勝，由勝者對敗者造成傷害。因為反擊方處在被動且無預謀狀態，因此無法造成重大傷害。</p>
+<p style="opacity: 0.5">（特殊狀況除外：ex. 反擊方骰出大成功!! or 攻擊方大失敗!!）</p>
+
+<p>&nbsp;</p>
+
+<h2 style="color: #C2C287;">閃避</h2>
+<style>
+  .rule-list {
+    display: table;
+    margin: 0 auto;
+    border-spacing: 0 6px; /* 每行的垂直間距 */
+  }
+
+  .rule-row {
+    display: table-row;
+  }
+
+  .rule-label {
+    display: table-cell;
+    font-weight: bold;
+    color: #CDCD9A; /* 溫和亮點綠 */
+    padding-right: 0.5em;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .rule-text {
+    display: table-cell;
+    text-align: left;
+    opacity: 0.9;
+  }
+</style>
+
+<div class="rule-list">
+  <div class="rule-row">
+    <div class="rule-label">地理劣勢：</div>
+    <div class="rule-text">1. 狹窄空間、背靠牆、坐在有扶手的椅子上、腳下是高過膝的水，扣除相對應閃避%。</div>
+  </div>
+  <div class="rule-row">
+    <div class="rule-label"></div>
+    <div class="rule-text">2. 跟其他人站太近、身邊有雜物，每增加一個障礙物 -10% 閃避。</div>
+  </div>
+  <div class="rule-row">
+    <div class="rule-label">地理優勢：</div>
+    <div class="rule-text"> 有掩體、隔著桌子椅子、身旁有根柱子等 +10% 閃避。</div>
+  </div>
+  <div class="rule-row">
+    <div class="rule-label">閃避遠距攻擊：</div>
+    <div class="rule-text">1. 狙擊：需要提前覺察，否則無法進行閃避。</div>
+  </div>
+  <div class="rule-row">
+    <div class="rule-label"></div>
+    <div class="rule-text">2. 遠距離：持槍者在可見可聞的方位時，可進行閃避；非槍械 +20% 閃避。</div>
+  </div>
+  <div class="rule-row">
+    <div class="rule-label"></div>
+    <div class="rule-text">3. 中距離：持槍者在可見可聞的方位時，可進行閃避；非槍械 +5% 閃避。</div>
+  </div>
+  <div class="rule-row">
+    <div class="rule-label"></div>
+    <div class="rule-text">4. 近距離：非槍械遠距武器攻擊可以閃避，槍枝視情況由KP判斷能否閃避。</div>
+  </div>
 </div>
 <p>&nbsp;</p>
+<h2 style="color: #BEBEBE;">防禦</h2>
+<p>&nbsp;</p>
+
+<div style="display:flex; justify-content:center; margin-top:20px;">
+  <table style="border-collapse:collapse; text-align:center; font-family:'Microsoft JhengHei'; border-radius:12px; overflow:hidden; border:1px solid #ccc; min-width:480px;">
+    <thead>
+      <tr style="border-bottom:1px solid #ccc;">
+        <th style="padding:10px;"> 防具</th>
+        <th style="padding:10px;"> 護甲值</th>
+        <th style="padding:10px;"> 備註</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:8px;">厚外套</td><td>+1</td><td>一般衣物，提供輕微防護。</td></tr>
+      <tr><td style="padding:8px;">安全帽</td><td>+2</td><td>基本頭部防護，可減輕鈍擊傷害。</td></tr>
+      <tr><td style="padding:8px;">鋼盔</td><td>+3</td><td>軍用頭盔，防禦頭部攻擊效果佳。</td></tr>
+      <tr><td style="padding:8px;">現代軍用頭盔</td><td>+5</td><td>高強度頭盔，能抵擋部分彈片衝擊。</td></tr>
+      <tr><td style="padding:8px;">防彈背心</td><td>+8</td><td>降低槍械傷害（主要保護軀幹）。</td></tr>
+      <tr><td style="padding:8px;">戰備裝</td><td>+12</td><td>全身戰術裝備，行動受限但防護極高。</td></tr>
+      <tr><td style="padding:8px;">防彈玻璃</td><td>15</td><td>-</td></tr>
+      <tr><td style="padding:8px;">厚鋼板</td><td>20</td><td>-</td></tr>
+
+
+
+    </tbody>
+  </table>
+</div>
+<p>&nbsp;</p>
+<h2 style="color: #FFAD86;">進攻</h2>
+<p>&nbsp;</p>
+    <p>💥 大成功!! = 打出傷害最大值無視護甲+附加效果!!　</p>
+    <p>⚔️ 極限成功 = 打出穿透傷害　</p>
+    <p>🗡️ 困難成功 = 打出較高傷害　</p>
+    <p>🩴 一般成功 = 打出基本傷害　</p>
+    <p>🗿 一般失敗 = 沒有造成傷害　</p>
+    <p>🪦 大失敗!! = 你的失誤將導致自己與同伴陷入相當不利的局面!!　</p>
+<p style="opacity: 0.5">大成功=無視護甲+造成兩次最高傷害(ex.1d6=6×2) 極限成功=無視護甲+(ex.1d6+1d6) 困難成功=(ex.1d6+1d6)</p>
+
+
+
+<p>&nbsp;</p>
+
+    <p style="opacity: 0.9; color: #C3D941; font-weight: bold; font-size: 17px;"><strong>遠近混戰</strong>：</p>
+    <p>當遠程攻擊試圖介入戰局，必須注意：命中失敗的你可能會誤傷友軍！</p>
+    <p>這次命中失敗的攻擊將會由混戰中某位幸運值(LUK)最低的倒楣蛋扛下所有。</p>
+    <p>然而近戰的你也不能鬆懈，在戰友身旁戰鬥的你若骰出大失敗，也有機會打暈無辜好隊友。</p>
+
+
+    <p style="opacity: 0.9; color: #C3D941; font-weight: bold; font-size: 17px;"><strong>遠距離作戰</strong>：</p>
+<style>
+  .small-distance-table {
+    width: 70%;
+    max-width: 500px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: rgba(30, 40, 40, 0.85);
+    color: #e0e0d1;
+    font-family: 'Merriweather', serif;
+    text-align: center;
+    font-size: 14px; /* 小一點文字 */
+  }
+
+  .small-distance-table th,
+  .small-distance-table td {
+    border: 1px solid rgba(76, 175, 80, 0.3); /* 半透明綠，呈現中空效果 */
+    padding: 6px 10px;
+  }
+
+  .small-distance-table th {
+    background: #2e3d3d;
+    color: #C3D941;
+  }
+
+  .small-distance-table td {
+    background: rgba(46, 46, 46, 0.7);
+  }
+</style>
+
+<table class="small-distance-table">
+  <thead>
+    <tr>
+      <th>距離分類</th>
+      <th>距離範圍</th>
+      <th>命中修正</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>近距離</td>
+      <td>0-10 m</td>
+      <td>最佳命中距離</td>
+    </tr>
+    <tr>
+      <td>中距離</td>
+      <td>11-50 m</td>
+      <td>命中−10%</td>
+    </tr>
+    <tr>
+      <td>遠距離</td>
+      <td>51-200 m</td>
+      <td>命中−20%</td>
+    </tr>
+    <tr>
+      <td>極遠</td>
+      <td>200 m以上</td>
+      <td>命中−50%</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="opacity: 0.5">（花一個回合瞄準可以提升 1d15 % 命中率。）</p>
+
+    <p>備戰狀態搶得先手；近距離情況下若手未持槍也未骰出困難成功以上可被人打斷架槍動作，也可閃避。</p>
+    <p>槍械清空彈匣以後需要花一回合裝填子彈，火箭筒需要花兩回合裝填。</p>
+    <p>掃射：傷害減半。掃射 5 發子彈提升 10% 命中，掃射 10 發子彈提升 20% 命中。</p>
+    <p style="opacity: 0.9; color: #C3D941; font-weight: bold; font-size: 17px;"><strong>投擲命中</strong>：</p>
+<p style="opacity: 0.5">投擲距離每5m命中 -10 +傷害減半，最大投擲距離請參照投擲技能 -25% 。</p>
+
+<style>
+  .small-distance-table {
+    width: 70%;
+    max-width: 500px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: rgba(30, 40, 40, 0.85);
+    color: #e0e0d1;
+    font-family: 'Merriweather', serif;
+    text-align: center;
+    font-size: 14px; /* 小一點文字 */
+  }
+
+  .small-distance-table th,
+  .small-distance-table td {
+    border: 1px solid rgba(76, 175, 80, 0.3); /* 半透明綠，呈現中空效果 */
+    padding: 6px 10px;
+  }
+
+  .small-distance-table th {
+    background: #2e3d3d;
+    color: #C3D941;
+  }
+
+  .small-distance-table td {
+    background: rgba(46, 46, 46, 0.7);
+  }
+</style>
+
+<table class="small-distance-table">
+  <thead>
+    <tr>
+      <th>檢定結果</th>
+      <th>結算傷害</th>
+      <th>距離影響</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>大成功</td>
+      <td>最高傷害+附加效果</td>
+      <td>無視距離減傷</td>
+    </tr>
+    <tr>
+      <td>極限成功</td>
+      <td>擊出最高傷害</td>
+      <td>無視距離減傷</td>
+    </tr>
+    <tr>
+      <td>困難成功</td>
+      <td>基本傷害</td>
+      <td>無視距離減傷</td>
+    </tr>
+    <tr>
+      <td>普通成功</td>
+      <td>基本傷害</td>
+      <td>距離減傷</td>
+    </tr>
+  </tbody>
+</table>
+<p style="opacity: 0.5">當你骰出極限成功以上，原本無法造成投擲傷害的物品極有可能造成傷害？或意想不到的效果。</p>
+
+    <p></p>
+
+
+
+
+
+<p>&nbsp;</p>
+<h2 style="color: #D3FF93;">武器</h2>
+<p>&nbsp;</p>
+<div style="display:flex; justify-content:center; margin-top:20px;">
+  <table style="border-collapse:collapse; text-align:center; font-family:'Microsoft JhengHei'; border-radius:12px; overflow:hidden; border:1px solid #ccc; min-width:500px;">
+    <thead>
+      <tr style="border-bottom:1px solid #ccc;">
+        <th style="padding:10px;"> 武器類型</th>
+        <th style="padding:10px;">基礎傷害</th>
+        <th style="padding:10px;">攻擊射程(m)</th>
+        <th style="padding:10px;">備註</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:8px;">近戰肉搏⚔️</td><td>1d3</td><td>0–1</td><td>精準攻擊可增加困難成功加成</td></tr>
+      <tr><td style="padding:8px;">短刀⚔️匕首</td><td>1d4</td><td>0–2</td><td>可刺擊或反擊</td></tr>
+      <tr><td style="padding:8px;">刀劍⚔️鏈枷⚔️斧</td><td>1d6</td><td>0–2</td><td>擊倒敵人機率較高</td></tr>
+      <tr><td style="padding:8px;">長鐵棍⚔️</td><td>1d5</td><td>0–2</td><td>擊倒或眩暈效果</td></tr>
+      <tr><td style="padding:8px;">鏈鋸⚔️</td><td>1d10</td><td>0–2</td><td>造成高傷害附加眩暈或割裂特效</td></tr>
+      <tr><td style="padding:8px;">鞭⚔️</td><td>1d3</td><td>0–3</td><td>特殊效果比如綑綁或奪取武器等</td></tr>
+      <tr><td style="padding:8px;">長矛</td><td>1d ×6</td><td>0–2</td><td>一回合最多點射3發</td></tr>
+      <tr><td style="padding:8px;">手槍</td><td>1d6 ×6</td><td>0–25</td><td>一回合最多點射3發</td></tr>
+      <tr><td style="padding:8px;">手槍</td><td>1d6 ×6</td><td>0–25</td><td>一回合最多點射3發</td></tr>
+      <tr><td style="padding:8px;">步槍</td><td>1d8 ×5</td><td>0–100</td><td>一回合最多點射3發</td></tr>
+      <tr><td style="padding:8px;">機槍</td><td>2d6 ×10 / 2d8×20</td><td>0–200</td><td>輕型/中型(需要腳架)可掃射 </td></tr>
+      <tr><td style="padding:8px;">散彈槍</td><td>6d6</td><td>0–25</td><td>每5公尺傷害減2d6</td></tr>
+      <tr><td style="padding:8px;">狙擊槍</td><td>3d6 ×5</td><td>1-500</td><td>高傷害，射程遠，一回合只能射出一發</td></tr>
+      <tr><td style="padding:8px;">火焰噴射器💣</td><td>4D6 / 2D6(波及)×2</td><td>0-10</td><td>造成燃燒狀態+恐慌可掃射</td></tr>
+      <tr><td style="padding:8px;">火箭筒💣</td><td>6d6/ 2D6(波及)</td><td>0-500</td><td>超遠距離範圍傷害+恐慌</td></tr>
+      <tr><td style="padding:8px;">手雷炸藥💣</td><td>4d10/ 1D6(波及)</td><td>0-15</td><td>範圍傷害+恐慌，對群體有效</td></tr>
+    </tbody>
+  </table>
+</div>
+<p>&nbsp;</p>
+<p style="opacity: 0.5">（狙擊槍長度就有1公尺。火焰噴射器離太近會燒到自己但也沒關係對吧！在爆炸10m內會被炸到很讚吧！）？</p>
+<p>&nbsp;</p>
+
 
 
 </div>
