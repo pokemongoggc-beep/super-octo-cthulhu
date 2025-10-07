@@ -69,6 +69,7 @@ cursor: pointer;
     }
 
     h2 {
+  font-size: 30px;                        /* 字體更大，醒目 */
       font-family: 'UnifrakturCook', cursive;
       color: #cce0d6;
       margin-bottom: 10px;
@@ -499,8 +500,9 @@ cursor: pointer;
 </script>
 <!-- 1% -->
 <div class="skill-category">
-  <h3>📜 1%</h3>
+  <h3>🧬 1%</h3>
   <div class="skill-tags">
+    <button onclick="copySkill('科學🧬')">科學🧬</button>
     <button onclick="copySkill('人類學')">人類學</button>
     <button onclick="copySkill('考古學')">考古學</button>
     <button onclick="copySkill('天文學🧬')">天文學🧬</button>
@@ -521,19 +523,18 @@ cursor: pointer;
     <button onclick="copySkill('物理學🧬')">物理學🧬</button>
     <button onclick="copySkill('駕駛')">駕駛</button>
     <button onclick="copySkill('精神分析')">精神分析</button>
-    <button onclick="copySkill('科學🧬')">科學🧬</button>
     <button onclick="copySkill('動物學🧬')">動物學🧬</button>
   </div>
 </div>
 
 <!-- 5% -->
 <div class="skill-category">
-  <h3>⚡ 5%</h3>
+  <h3>🎞️ 5%</h3>
   <div class="skill-tags">
+    <button onclick="copySkill('技藝🎞️')">技藝🎞️</button>
     <button onclick="copySkill('會計')">會計</button>
     <button onclick="copySkill('演技🎞️')">演技🎞️</button>
     <button onclick="copySkill('鑑定')">鑑定</button>
-    <button onclick="copySkill('技藝🎞️')">技藝🎞️</button>
     <button onclick="copySkill('使用電腦')">使用電腦</button>
     <button onclick="copySkill('偽裝')">偽裝</button>
     <button onclick="copySkill('話術')">話術</button>
@@ -550,7 +551,7 @@ cursor: pointer;
 
 <!-- 10% -->
 <div class="skill-category">
-  <h3>🌏 10%</h3>
+  <h3>🏹 10%</h3>
   <div class="skill-tags">
     <button onclick="copySkill('遠戰🏹')">遠戰🏹</button>
     <button onclick="copySkill('機槍🏹')">機槍🏹</button>
@@ -603,12 +604,12 @@ cursor: pointer;
 <!-- 25% 滿版 -->
 <div class="skill-row-full">
   <div class="skill-category">
-    <h3>💥 25%</h3>
+    <h3>⚔️ 25%</h3>
     <div class="skill-tags">
       <button onclick="copySkill('近戰⚔️')">近戰⚔️</button>
+      <button onclick="copySkill('識破')">識破</button>
       <button onclick="copySkill('步槍🏹')">步槍🏹</button>
       <button onclick="copySkill('散彈槍🏹')">散彈槍🏹</button>
-      <button onclick="copySkill('識破')">識破</button>
     </div>
   </div>
 </div>
@@ -623,7 +624,7 @@ cursor: pointer;
   </div>
 
   <div class="skill-category">
-    <h3>💨 敏捷 (DEX) ÷ 2</h3>
+    <h3>敏捷 (DEX) ÷ 2</h3>
     <div class="skill-tags">
       <button onclick="copySkill('閃避')">閃避</button>
     </div>
@@ -720,7 +721,7 @@ tbody tr:last-child td {
     </tr>
     <tr>
       <td>80–89%</td>
-      <td>頂尖專家</td>
+      <td>頂尖行家</td>
       <td>領域內菁英</td>
       <td>高手 / 技藝高超</td>
     </tr>
@@ -744,7 +745,7 @@ tbody tr:last-child td {
 
 
 
-    <p>&nbsp;</p><h2>技能骰檢定</h2><p style="opacity: 0.5">（視情況、劇本ＫＰ有可能改動大成功與大失敗骰的範圍）</p>
+    <p>&nbsp;</p><h2>技能骰檢定</h2><p style="opacity: 0.5">（視情況、劇本ＫＰ可能改動大成功與大失敗檢定範圍）</p>
 </p>
 <!-- 乾淨版技能骰檢定說明 -->
 <style>
@@ -821,8 +822,119 @@ tbody tr:last-child td {
   </div>
 
   <div id="battle" class="content">
-    <h2>戰鬥</h2>
-    <p>正在努力為你加載...</p>
+<p>&nbsp;</p>
+<p style="opacity: 0.5">※理論上人們通常避免戰鬥，ＰＣ在戰鬥過程中角色有機率永久性殘廢以及死亡！</p>
+<p>&nbsp;</p>
+
+
+    <p ><!-- 戰鬥與受傷範圍簡明規則 -->
+
+  <div class="combat-section">
+    <h2>幹架流程</h2>
+    <p>1. 判定先攻順序：依敏捷（DEX）高低決定先手。</p>
+    <p>2. 行動輪：每回合玩家和 NPC/敵人依次行動，包括移動、攻擊、使用技能等。</p>
+    <p>3. 攻擊檢定：D100 ≤ 攻擊技能值 → 命中，否則未命中。</p>
+    <p>4. 傷害判定：命中後，依武器傷害骰計算傷害，扣除防護（Armor等）。</p>
+  </div>
+<p>&nbsp;</p>
+  <div class="combat-section">
+<h2 style="color: #FF5C54;">受傷</h2>
+    <p><strong> HP / 生命值</strong>：角色受傷時扣除對應點數。</p>
+    <p style="opacity: 0.9; color: #E96E67; font-weight: bold; font-size: 17px;"><strong>重傷判定</strong>：</p>
+ 
+      <p>頭部受傷：+1d6 暈眩或致命效果。</p>
+      <p>胸部受傷：扣除更多 HP，可能影響心肺功能。</p>
+      <p>四肢受傷：減少行動或命中率。</p>
+  
+    <p style="opacity: 0.9; color: #E96E67; font-weight: bold; font-size: 17px;"><strong>傷勢影響</strong>：</p>
+      <p>負傷（ 50% HP 以上）：輕微懲罰，仍可戰鬥。</p>
+      <p>重傷（ 50% 以下 25% HP 以上）：行動受限，可能需要急救。</p>
+<p style="opacity: 0.5">（行動受限=所有關於肢體活動類相關判定-25%）</p>
+      <p>病危（ 25% HP 以下 ）：立即檢定 CON，失敗即刻進入瀕死。</p>
+<p style="opacity: 0.5">（病危狀態所有行動判定-40%）</p>
+      <p>瀕死（ HP 歸零 ）：立即檢定 CON/END，失敗即死亡。</p>
+    </ul>
+  </div>
+
+  <div class="combat-section">
+
+<style>
+  .healing-box {
+    background: rgba(30, 40, 30, 0.6);         /* 柔和暗綠灰底色 */
+    border: 1.5px solid rgba(195, 217, 65, 0.4); /* 淡綠光邊框 */
+    border-radius: 12px;                       /* 圓角 */
+    padding: 18px 24px;
+    margin: 25px auto;
+    width: 80%;                                /* 可調整寬度 */
+    color: #e4f7ec;
+    line-height: 1.7;
+    box-shadow: 0 0 8px rgba(195, 217, 65, 0.15); /* 微微發光 */
+    font-family: 'Zen Kaku Gothic New', 'Microsoft JhengHei', sans-serif;
+  }
+
+  .healing-box p {
+    margin: 6px 0;
+  }
+
+  .healing-box .title {
+    opacity: 0.95;
+    color: #C3D941;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+</style>
+<p>&nbsp;</p>
+    <div class="healing-box">
+      <p class="title"><strong>治療與恢復</strong>：</p>
+      <p>1. 自然恢復：隨著時間身體自主癒合，在判斷玩家傷口不會惡化的情況下恢復ＨＰ。</p>
+      <p>2. 急救 / 醫療技能：成功檢定可立即回復部分 HP 以及防止傷勢惡化。</p>
+      <p>3. 藥物或魔法恢復（如適用）：立即補充 HP 或解除狀態異常。</p>
+      <p>4. 長休：去睡覺ｅｘ跑團結束，角色當下處境並不惡劣，下次開機可回復ＨＰ。</p>
+</div>
+<p>&nbsp;</p>
+
+    <h2>回合戰</h2>
+    <p style="opacity: 0.9; color: #C3D941; font-weight: bold; font-size: 17px;"><strong>屬於你的回合內可進行1次動作</strong>：</p>
+<style>
+  .action-list {
+    display: inline-block;       /* 讓整體仍置中 */
+    text-align: left;            /* 左對齊內容 */
+    font-family: 'Zen Kaku Gothic New', 'Microsoft JhengHei', sans-serif;
+    line-height: 1.8;
+    font-size: 18px;
+    color: #E1EFCC;
+  }
+
+  .action-list p {
+    margin: 4px 0;
+  }
+
+  /* 小圓點樣式 */
+  .dot {
+    color: #C3D941;             /* 柔和亮綠色 */
+    font-weight: bold;
+    margin-right: 8px;
+  }
+
+  .action-list span {
+    opacity: 0.6;               /* 註解淡化 */
+  }
+</style>
+
+<div class="action-list">
+  <p><span class="dot">•</span>攻擊　<span>（包含遠戰、進戰）</span></p>
+  <p><span class="dot">•</span>執行戰略　<span>（ex. 設陷阱、布陣、掩護）</span></p>
+  <p><span class="dot">•</span>逃跑　<span>（骰敏捷（DEX）可能進追逐）</span></p>
+  <p><span class="dot">•</span>使用魔法　<span>（消耗MP的行動）</span></p>
+  <p><span class="dot">•</span>其他　<span>（PC想使用某技能或其他舉動）</span></p>
+</div>
+<p>&nbsp;</p>
+
+
+</div>
+</p>
   </div>
 
   <div id="chase" class="content">
@@ -870,5 +982,3 @@ tbody tr:last-child td {
   });
 </script>
 </html>
-
-
