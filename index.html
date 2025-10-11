@@ -2,20 +2,11 @@
 <html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
-  <title>時亂TSD房規</title>
+  <title>TSD</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Merriweather&family=UnifrakturCook:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: "Merriweather", serif;
-      background: #1b2b2b;
-      color: #e0e0d1;
-      text-align: center;
-      padding: 50px;
-      scroll-behavior: smooth;
-      position: relative;
-      min-height: 100vh;
-    }
 
     body::before {
       content: "";
@@ -28,49 +19,85 @@
     }
 
     /* ===== H1 主標題 ===== */
-    h1 {
+h1 {
+  margin-top: 0;
+  margin-bottom: 2px;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 5em;
+  color: #DEE7D5;
+  text-shadow:
+    1px 1px 2px #000,
+    -1px -1px 2px #000;
+  letter-spacing: 4px;
+  transition: text-shadow 0.7s ease;
+  cursor: pointer;
+  position: relative; /* ✅ 為偽元素定位基準 */
+  z-index: 1;
+}
 
-      margin-bottom: 8px;
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 4em;
-      color: #e4f7ec;
-      text-shadow:
-        1px 1px 2px #000,
-        -1px -1px 2px #000;
-      letter-spacing: 4px;
-      transition: text-shadow 0.3s ease;
-cursor: pointer;
-    }
-    h1:hover {
-      text-shadow:
-        1px 1px 2px #000,
-        -1px -1px 2px #000,
-        0 0 10px rgba(123, 162, 63, 0.9),
-        0 0 20px rgba(123, 162, 63, 0.6);
-    }
+/* ✅ 背景 PNG 淡入 */
+h1::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 160%;
+  height: 160%;
+  background: url('LOL.png') center/contain no-repeat;
+  opacity: 0;
+  transition: opacity 1s ease, transform 1s ease;
+  z-index: -1;
+  pointer-events: none;
+}
 
-    .version-info {
-      position: absolute;
-      top: 12px;
-      right: 18px;
-      font-size: 0.85em;
-      font-family: 'Roboto', sans-serif;
-      color: #7ba23f;
-      opacity: 0.9;
-    }
+/* ✅ 小巧版 Version 浮現（右上角） */
+h1::before {
+  content: "Version 25.Oct.1.1";
+  position: absolute;
+  top: -18px;         /* 再靠近一點上緣 */
+  right: 10px;        /* 緊貼右邊 */
+  font-size: 0.28em;  /* ✅ 小巧字體：相對於 h1 的 28% */
+  font-family: 'Roboto', sans-serif;
+  color: #DEE7D5;     /* 柔和綠色字體 */
+  opacity: 0;
+  transition: opacity 0.7s ease, text-shadow 0.7s ease, transform 0.7s ease;
+  text-shadow: 0 0 5px rgba(123,162,63,0);
+  pointer-events: none;
+font-size: 10px;
+}
 
-    .subtitle {
-      font-family: 'Roboto', sans-serif;
-      font-size: 0.75em;
-      color: #7a8a85;
-      margin-bottom: 25px;
-      font-style: italic;
-      line-height: 1.2;
-    }
+/* ✅ 滑過時觸發光暈與背景 */
+h1:hover {
+  text-shadow:
+    1px 1px 2px #000,
+    -1px -1px 2px #000,
+    0 0 10px rgba(123, 162, 63, 0.9),
+    0 0 20px rgba(123, 162, 63, 0.6);
+}
+
+h1:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* ✅ 小版 Version 文字淡入＋柔光 */
+h1:hover::before {
+  opacity: 1;
+  transform: translateY(-2px);
+  text-shadow:
+    0 0 6px rgba(123,162,63,0.8),
+    0 0 10px rgba(123,162,63,0.6);
+}
+
+/* ✅ 隱藏舊版 version-info */
+.version-info {
+  display: none;
+}
+
 
     h2 {
   font-size: 30px;                        /* 字體更大，醒目 */
-      font-family: 'UnifrakturCook', cursive;
       color: #cce0d6;
       margin-bottom: 10px;
       letter-spacing: 1px;
@@ -94,7 +121,7 @@ cursor: pointer;
 }
 
 .navbar {
-  margin-bottom: 50px;                     /* 調整整體版面間距 */
+  margin-bottom: 30px;                     /* 調整整體版面間距 */
 }
 
 
@@ -137,12 +164,12 @@ cursor: pointer;
     /* ===== 內容框 ===== */
     .content {
       display: none;
-      background: rgba(30, 40, 40, 0.85);
+      background: rgba(38, 40, 40, 0.84);
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(76, 175, 80, 0.2);
       width: 60%;
-      margin: 0 auto;
+      margin: 0 auto 30px auto;
       transition: box-shadow 0.3s ease;
     }
     .content:hover {
@@ -152,6 +179,9 @@ cursor: pointer;
     .active {
       display: block;
     }
+
+
+
 
     /* ===== TOP 按鈕效果簡化版 ===== */
     .top-button {
@@ -178,41 +208,253 @@ cursor: pointer;
       pointer-events: auto;
     }
     .top-button:hover {
-      background: #3f5555;
+      background: #6b8e23;
       color: #ffffff;
-      border: 1px solid #7ba23f;
+      border: 1px solid #6b8e23;
     }
     .top-button:focus {
       outline: none;
-      border: 1px solid #c9a635;
+      border: 1px solid #6b8e23;
       box-shadow: 0 0 6px rgba(201,166,53,0.8);
     }
 
     @media (max-width: 480px) {
       .top-button { right: 12px; bottom: 12px; width: 52px; height: 52px; font-size: 12px; }
       .content { width: 90%; }
-      .version-info { font-size: 0.75em; top: 8px; right: 12px; }
     }
 * {
   caret-color: transparent;
 }
+body {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  padding-bottom: 50px;
+  background: #000;
+}
+
+.subtitle {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.75em;
+  color: #7a8a85;
+  font-style: italic;
+  opacity: 0;               /* 預設隱藏 */
+  transition: opacity 1s ease; /* 淡入動畫 */
+  text-align: center;
+  width: 100%;
+}
+
+.subtitle.show {
+  opacity: 1;               /* 顯示時淡入 */
+}
+
+
+
+
+
+
 
   </style>
 </head>
 <body>
 
-  <div class="version-info">Version 25.Sep.1.0</div>
 
-  <h1 id="main-title">時亂TSD房規</h1>
-  <p class="subtitle">The rules on this website are extended and customized from COC7 and are not original creations.</p>
+  <h1 id="main-title">TSD</h1>
+<body>
+  <div class="content">
+    <h1>主標題</h1>
+    <p>這裡是你的內容區域...</p>
+    <p style="height: 1500px;"></p> <!-- 模擬長頁面 -->
+  </div>
 
+  <p class="subtitle">
+    The rules on this website are extended and customized from COC7 and are not original creations. 
+    Do not steal or misappropriate. Any act of theft will be pursued without mercy.
+  </p>
+
+  <script>
+    // 監聽捲動事件：判斷是否滑到最底部
+    window.addEventListener('scroll', () => {
+      const subtitle = document.querySelector('.subtitle');
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.body.scrollHeight;
+
+      if (scrollY + windowHeight >= documentHeight - 10) {
+        subtitle.classList.add('show'); // 顯示
+      } else {
+        subtitle.classList.remove('show'); // 隱藏
+      }
+    });
+  </script>
+</body>
+
+<style>
+<style>
+  /* 外層容器：保持居中 */
+  .navbar-container {
+    position: relative;
+    width: 100vw;
+    overflow: hidden; /* 隱藏超出部分 */
+    background: #000000;
+  }
+
+  /* 導覽列本體 */
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 30px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 背景延伸 + 微光流動動畫 */
+  .navbar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50vw;
+    width: 200vw;
+    height: 100%;
+background: linear-gradient(
+  120deg,
+  #151815 0%,
+  #1d2620 35%,
+  #273527 45%,  /* 暗綠 */
+  #1d2620 55%,
+  #151815 100%
+);
+    background-size: 400% 100%;
+    animation: glowFlow 10s linear infinite;
+    z-index: 0;
+  }
+
+  /* 微光流動關鍵幀動畫 */
+  @keyframes glowFlow {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 0%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+
+  .btn {
+    position: relative;
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    font-size: 15px;
+    white-space: nowrap;
+    z-index: 1;
+  }
+
+  .btn:hover {
+    background-color: #6B8E23;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+
+  /* 書籤下拉選單 */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    min-width: 180px;
+    border-radius: 6px;
+    box-shadow: 0 6px 10px rgba(0,0,0,0.4);
+    z-index: 10;
+    text-align: center;
+  }
+
+  .dropdown-content a {
+    color: white;
+    padding: 10px 14px;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #6B8E23;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+
+
+.dropdown.force-hide .dropdown-content { display: none !important; }
+
+
+
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.dropdown-content a').forEach(item => {
+    item.addEventListener('click', () => {
+      const drop = item.closest('.dropdown');
+      if (!drop) return;
+      drop.classList.add('force-hide');
+      // 小延遲後移除 force-hide（避免長期覆蓋 :hover）
+      setTimeout(() => drop.classList.remove('force-hide'), 100);
+    });
+  });
+});
+</script>
+
+<div class="navbar-container">
   <div class="navbar">
     <button class="btn active-btn" onclick="showContent('role', this)">角色創建</button>
     <button class="btn" onclick="showContent('skill', this)">技能</button>
-    <button class="btn" onclick="showContent('battle', this)">戰鬥</button>
+
+    <div class="dropdown">
+      <button class="btn" onclick="showContent('battle', this)">戰鬥▾</button>
+      <div class="dropdown-content">
+        <a href="#" onclick="showContent('qwe')">防具/武器</a>
+        <a href="#" onclick="showContent('asd')">策略作戰</a>
+        <a href="#" onclick="showContent('zxc')">飢渴系統</a>
+        <a href="#" onclick="showContent('luck')"> 運氣與實力</a>
+      </div>
+    </div>
+
+
     <button class="btn" onclick="showContent('chase', this)">追 & 逃</button>
-    <button class="btn" onclick="showContent('san', this)">SAN 值系統</button>
+    <button class="btn" onclick="showContent('san', this)"> ̷S̷A̷N̷理智值</button>
   </div>
+</div>
+
+<script>
+  function showContent(section, btn) {
+    console.log("某", section);
+  }
+
+</script>
+
+
+</script>
 
   <div id="role" class="content active">
 
@@ -368,7 +610,8 @@ cursor: pointer;
           letter-spacing: 1px; 
           margin-top: 50px; 
           text-shadow: 1px 1px 4px rgba(0,0,0,0.5);">
-    ✨恭喜你完成角色創建啦✨
+    ✨恭喜你完成角色創建啦✨<p>&nbsp;</p>
+
 </p>
   </div>
   <div id="skill" class="content">
@@ -415,11 +658,12 @@ cursor: pointer;
   /* ===== 技能分類 ===== */
   .skill-category {
     background: #2a2a2a;
-    border-radius: 14px;
-    padding: 25px;
+    border-radius: 10px;
+    padding: 20px;
     margin: 20px auto;
     border-top: 4px solid #3E5740;
-    box-shadow: 0 -2px 12px rgba(46,139,87,0.4);
+box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.4);
+  width: 92%; 
   }
 
   .skill-category h3 {
@@ -465,7 +709,7 @@ cursor: pointer;
     justify-content: center;
     gap: 0;
     flex-wrap: wrap;
-    max-width: 100%; /* 滿版 */
+    max-width: 96%; /* 滿版 */
     margin: 20px auto;
   }
 
@@ -475,7 +719,7 @@ cursor: pointer;
     margin: 0;
     border-radius: 14px;
     border-top: 4px solid #3E5740;
-    box-shadow: 0 -2px 12px rgba(46,139,87,0.4);
+box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.4);
     padding: 25px;
   }
 
@@ -559,6 +803,7 @@ cursor: pointer;
   <div class="skill-tags">
     <button onclick="copySkill('遠戰🏹')">遠戰🏹</button>
     <button onclick="copySkill('機槍🏹')">機槍🏹</button>
+    <button onclick="copySkill('衝鋒槍🏹')">衝鋒槍🏹</button>
     <button onclick="copySkill('火箭筒🏹')">火箭筒🏹</button>
     <button onclick="copySkill('火焰噴射器🏹')">火焰噴射器🏹</button>
     <button onclick="copySkill('鏈枷⚔️')">鏈枷⚔️</button>
@@ -593,7 +838,7 @@ cursor: pointer;
   <div class="skill-tags">
     <button onclick="copySkill('刀劍⚔️')">刀劍⚔️</button>
     <button onclick="copySkill('手槍🏹')">手槍🏹</button>
-    <button onclick="copySkill('矛🏹')">矛🏹</button>
+    <button onclick="copySkill('矛⚔️🏹')">矛⚔️🏹</button>
     <button onclick="copySkill('攀爬')">攀爬</button>
     <button onclick="copySkill('跳躍')">跳躍</button>
     <button onclick="copySkill('聆聽')">聆聽</button>
@@ -605,16 +850,14 @@ cursor: pointer;
   </div>
 </div>
 
-<!-- 25% 滿版 -->
-<div class="skill-row-full">
-  <div class="skill-category">
+<!-- 25%  -->
+<div class="skill-category">
     <h3>⚔️ 25%</h3>
-    <div class="skill-tags">
+  <div class="skill-tags">
       <button onclick="copySkill('近戰⚔️')">近戰⚔️</button>
       <button onclick="copySkill('識破')">識破</button>
       <button onclick="copySkill('步槍🏹')">步槍🏹</button>
       <button onclick="copySkill('散彈槍🏹')">散彈槍🏹</button>
-    </div>
   </div>
 </div>
 
@@ -743,7 +986,7 @@ tbody tr:last-child td {
       <td>96–100%</td>
       <td>幾乎超越人類極限</td>
       <td>神乎其技 / 傳奇人物</td>
-      <td>傳奇 / 首屈一指舉世無雙</td>
+      <td>傳奇 / 首屈一指</td>
     </tr>
   </tbody>
 </table>
@@ -821,6 +1064,8 @@ tbody tr:last-child td {
   <div class="dice-section">
     <h3>技能成長</h3>
     <p>檢定成功後劃勾，劇本結束 → 投 D100 > 技能值 → 成長 1d10</p>
+<p>&nbsp;</p>
+
   </div>
 
 </div>
@@ -828,8 +1073,9 @@ tbody tr:last-child td {
   </div>
 
   <div id="battle" class="content">
+
 <p>&nbsp;</p>
-<p style="opacity: 0.5">※理論上人們通常避免戰鬥，ＰＣ在戰鬥過程中角色有機率永久性殘廢以及死亡！</p>
+<p style="opacity: 0.5 ; color: #FF5C54">※理論上人們通常避免戰鬥，ＰＣ在戰鬥過程中角色有機率永久性殘廢以及死亡！</p>
 <p>&nbsp;</p>
 
 
@@ -904,7 +1150,7 @@ tbody tr:last-child td {
 
 <p>&nbsp;</p>
 
-    <h2>回合戰</h2>
+    <h2>回合</h2>
     <p style="opacity: 0.9; color: #C3D941; font-weight: bold; font-size: 17px;"><strong>屬於你的回合內可進行1次動作</strong>：</p>
 <style>
   .action-list {
@@ -942,119 +1188,9 @@ tbody tr:last-child td {
     <p style="opacity: 0.5 ;color: #C3D941">※執行某些戰略時不會占用回合，比如大喊趴下、撤退等...</p>
 <p>&nbsp;</p>
 
-<h2 style="color: #F2C5C7;">體格</h2>
-    <p>玩家對體格相差３階以上的目標進行近戰攻擊將自動失效。</p>
-    <p>對體格相差２階的目標需要進行兩次劣勢骰。</p>
-    <p>對體格相差１階的目標需要進行一次劣勢骰。</p>
-    <p>戰略例如擒拿、關節技、使用高度熟練冷兵器等...若PC角色設定跟飾演都非常到位可最高免除兩顆劣勢骰。</p>
-<p style="opacity: 0.5">遠距攻擊命中:體型 -2 以下吃一顆劣勢骰；體型 4 以上贈一顆優勢骰。</p>
 
-<p>&nbsp;</p>
-
-<h2 style="color: #A6A6D2;">偷襲</h2>
-    <p>1.潛行成功：埋伏或悄悄接近目標突襲、遠處狙擊等等。</p>
-    <p>2.突發攻勢：聆聽、心理學、發現失敗時，無防備下突然遭到攻擊。</p>
-<p style="font-weight: bold;    font-size: 17px;">- 偷襲成功可以增加一顆優勢骰/優勢骰可與劣勢骰相互抵銷 -</p>
-<p>&nbsp;</p>
-
-<h2 style="color: #9DDDD2;">反擊</h2>
-    <p>對立擲骰僅限於近戰，遭受遠距離攻擊時無法執行反擊，可以選擇防禦、閃避或找尋掩護。</p>
-    <p>反擊就是所謂對抗骰，優先看成功等級，等級相同ex.都是極限成功，那就直接比較骰出的數字。</p>
-    <p>數字小的勝，由勝者對敗者造成傷害。因為反擊方處在被動且無預謀狀態，因此無法造成重大傷害。</p>
-<p style="opacity: 0.5">（特殊狀況除外：ex. 反擊方骰出大成功!! or 攻擊方大失敗!!）</p>
-
-<p>&nbsp;</p>
-
-<h2 style="color: #C2C287;">閃避</h2>
-<style>
-  .rule-list {
-    display: table;
-    margin: 0 auto;
-    border-spacing: 0 6px; /* 每行的垂直間距 */
-  }
-
-  .rule-row {
-    display: table-row;
-  }
-
-  .rule-label {
-    display: table-cell;
-    font-weight: bold;
-    color: #CDCD9A; /* 溫和亮點綠 */
-    padding-right: 0.5em;
-    white-space: nowrap;
-    text-align: right;
-  }
-
-  .rule-text {
-    display: table-cell;
-    text-align: left;
-    opacity: 0.9;
-  }
-</style>
-
-<div class="rule-list">
-  <div class="rule-row">
-    <div class="rule-label">地理劣勢：</div>
-    <div class="rule-text">1. 狹窄空間、背靠牆、坐在有扶手的椅子上、腳下是高過膝的水，扣除相對應閃避%。</div>
-  </div>
-  <div class="rule-row">
-    <div class="rule-label"></div>
-    <div class="rule-text">2. 跟其他人站太近、身邊有雜物，每增加一個障礙物 -10% 閃避。</div>
-  </div>
-  <div class="rule-row">
-    <div class="rule-label">地理優勢：</div>
-    <div class="rule-text"> 有掩體、隔著桌子椅子、身旁有根柱子等 +10% 閃避。</div>
-  </div>
-  <div class="rule-row">
-    <div class="rule-label">閃避遠距攻擊：</div>
-    <div class="rule-text">1. 狙擊：需要提前覺察，否則無法進行閃避。</div>
-  </div>
-  <div class="rule-row">
-    <div class="rule-label"></div>
-    <div class="rule-text">2. 遠距離：持槍者在可見可聞的方位時，可進行閃避；非槍械 +20% 閃避。</div>
-  </div>
-  <div class="rule-row">
-    <div class="rule-label"></div>
-    <div class="rule-text">3. 中距離：持槍者在可見可聞的方位時，可進行閃避；非槍械 +5% 閃避。</div>
-  </div>
-  <div class="rule-row">
-    <div class="rule-label"></div>
-    <div class="rule-text">4. 近距離：非槍械遠距武器攻擊可以閃避，槍枝視情況由KP判斷能否閃避。</div>
-  </div>
-</div>
-<p>&nbsp;</p>
-<h2 style="color: #BEBEBE;">防禦</h2>
-<p>&nbsp;</p>
-
-<div style="display:flex; justify-content:center; margin-top:20px;">
-  <table style="border-collapse:collapse; text-align:center; font-family:'Microsoft JhengHei'; border-radius:12px; overflow:hidden; border:1px solid #ccc; min-width:480px;">
-    <thead>
-      <tr style="border-bottom:1px solid #ccc;">
-        <th style="padding:10px;"> 防具</th>
-        <th style="padding:10px;"> 護甲值</th>
-        <th style="padding:10px;"> 備註</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td style="padding:8px;">厚外套</td><td>+1</td><td>一般衣物，提供輕微防護。</td></tr>
-      <tr><td style="padding:8px;">安全帽</td><td>+2</td><td>基本頭部防護，可減輕鈍擊傷害。</td></tr>
-      <tr><td style="padding:8px;">鋼盔</td><td>+3</td><td>軍用頭盔，防禦頭部攻擊效果佳。</td></tr>
-      <tr><td style="padding:8px;">現代軍用頭盔</td><td>+5</td><td>高強度頭盔，能抵擋部分彈片衝擊。</td></tr>
-      <tr><td style="padding:8px;">防彈背心</td><td>+8</td><td>降低槍械傷害（主要保護軀幹）。</td></tr>
-      <tr><td style="padding:8px;">戰備裝</td><td>+12</td><td>全身戰術裝備，行動受限但防護極高。</td></tr>
-      <tr><td style="padding:8px;">防彈玻璃</td><td>15</td><td>-</td></tr>
-      <tr><td style="padding:8px;">厚鋼板</td><td>20</td><td>-</td></tr>
-
-
-
-    </tbody>
-  </table>
-</div>
-<p>&nbsp;</p>
-<h2 style="color: #FFAD86;">進攻</h2>
-<p>&nbsp;</p>
-    <p>💥 大成功!! = 打出傷害最大值無視護甲+附加效果!!　</p>
+<h2>命中</h2>
+    <p>💥 大成功!! = 無視護甲打出傷害最大值+附加效果!!　</p>
     <p>⚔️ 極限成功 = 打出穿透傷害　</p>
     <p>🗡️ 困難成功 = 打出較高傷害　</p>
     <p>🩴 一般成功 = 打出基本傷害　</p>
@@ -1137,10 +1273,10 @@ tbody tr:last-child td {
 <p style="opacity: 0.5">（花一個回合瞄準可以提升 1d15 % 命中率。）</p>
 
     <p>備戰狀態搶得先手；近距離情況下若手未持槍也未骰出困難成功以上可被人打斷架槍動作，也可閃避。</p>
-    <p>槍械清空彈匣以後需要花一回合裝填子彈，火箭筒需要花兩回合裝填。</p>
+    <p>槍械清空彈匣以後需要花一回合裝填子彈，雙槍、火焰噴射器、火箭筒需要花兩回合裝填。</p>
     <p>掃射：傷害減半。掃射 5 發子彈提升 10% 命中，掃射 10 發子彈提升 20% 命中。</p>
     <p style="opacity: 0.9; color: #C3D941; font-weight: bold; font-size: 17px;"><strong>投擲命中</strong>：</p>
-<p style="opacity: 0.5">投擲距離每5m命中 -10 +傷害減半，最大投擲距離請參照投擲技能 -25% 。</p>
+<p style="opacity: 0.5">投擲距離每5m傷害減半命中 -10 %，最大投擲距離請參照STR(力量) -25 % 。</p>
 
 <style>
   .small-distance-table {
@@ -1203,6 +1339,321 @@ tbody tr:last-child td {
   </tbody>
 </table>
 <p style="opacity: 0.5">當你骰出極限成功以上，原本無法造成投擲傷害的物品極有可能造成傷害？或意想不到的效果。</p>
+<p>&nbsp;</p>
+
+
+
+
+</div>
+</p>
+  </div>
+
+  <div id="chase" class="content">
+    <h2>追 & 逃</h2>
+    <p>想逃？</p>
+  </div>
+
+  <div id="san" class="content">
+    <h2>SAN</h2>
+<!-- 🔹 完整小格子瘋狂狀態進度表 -->
+<div class="madness-table-container">
+  <table class="madness-table">
+    <tr>
+      <th colspan="2" class="table-title" link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">瘋　　狂　　狀　　態　　🗝　　解　　鎖　　進　　度</th>
+    </tr>
+    <tr>
+      <!-- 左半格 1~50 -->
+      <td>
+        <table class="inner-table">
+          <tr>
+            <!-- 這裡用 JS 自動生成 -->
+            <script>
+              for(let i=1;i<=50;i++){
+                let unlockedNotes = {
+
+
+
+
+
+                };
+                if(unlockedNotes[i]){
+                  document.write(`<td id="mad${i}" class="mad-unlocked" data-note="${unlockedNotes[i]}"><div class="mad-num">${i}</div></td>`);
+                }else{
+                  document.write(`<td id="mad${i}" class="mad-locked"><div class="mad-num">${i}</div><div class="mad-text">???</div></td>`);
+                }
+                if(i%10===0 && i!==50) document.write("</tr><tr>");
+              }
+            </script>
+          </tr>
+        </table>
+      </td>
+
+      <!-- 右半格 51~100 -->
+      <td>
+        <table class="inner-table">
+          <tr>
+            <script>
+              for(let i=51;i<=100;i++){
+                let unlockedNotes = {
+
+
+
+
+
+
+                };
+                if(unlockedNotes[i]){
+                  document.write(`<td id="mad${i}" class="mad-unlocked" data-note="${unlockedNotes[i]}"><div class="mad-num">${i}</div></td>`);
+                }else{
+                  document.write(`<td id="mad${i}" class="mad-locked"><div class="mad-num">${i}</div><div class="mad-text">???</div></td>`);
+                }
+                if(i%10===0 && i!==100) document.write("</tr><tr>");
+              }
+            </script>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<style>
+.madness-table-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+  font-family: 'Zen Kaku Gothic New', 'Microsoft JhengHei', sans-serif;
+}
+
+.madness-table {
+  border-collapse: collapse;
+  background: #2a2a2a;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+}
+
+.table-title {
+      font-family: 'UnifrakturCook', cursive;
+
+  background-color: #1E1E1E;
+  color: #C3D941;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 2px solid #3f5530;
+}
+
+.madness-table td {
+  border: none;
+  padding: 0;
+  vertical-align: top;
+}
+
+.inner-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #1e1e1e;
+}
+
+.inner-table td {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #3a3a3a;
+  text-align: center;
+  color: #E1EFCC;
+  font-size: 13px;
+  border-radius: 4px;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.inner-table td:hover {
+  background: #3b4b3b;
+}
+
+.mad-num {
+  font-weight: bold;
+  font-size: 12px;
+  opacity: 0.8;
+  color: #C3D941;
+}
+
+.mad-text {
+  font-size: 12px;
+  opacity: 0.7;
+  color: #ccc;
+  line-height: 1.2;
+}
+
+/* 已解鎖格子沒有 ??? */
+.mad-unlocked .mad-text { display: none; }
+
+/* tooltip */
+.mad-unlocked::after {
+  content: attr(data-note);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2e2e2e;
+  color: #C3D941;
+  padding: 3px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in-out;
+  border: 1px solid #4a5f3c;
+  z-index: 10;
+}
+
+.mad-unlocked:hover::after {
+  opacity: 1;
+}
+</style>
+
+<style>
+.madness-table-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+  font-family: 'Zen Kaku Gothic New', 'Microsoft JhengHei', sans-serif;
+}
+
+.madness-table {
+  border-collapse: collapse;
+  background: #2a2a2a;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+.table-title {
+???
+  background-color: #3f5530;
+  color: #6C772F;
+  font-size: 18px;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 2px solid #4a5f3c;
+}
+
+.madness-table td {
+  border: none;
+  padding: 10px;
+  vertical-align: top;
+}
+
+.inner-table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #1e1e1e;
+}
+
+.inner-table td {
+  border: 1px solid #3a3a3a;
+  text-align: center;
+  width: 45px;
+  height: 40px;
+  color: #E1EFCC;
+  font-size: 13px;
+  border-radius: 4px;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.inner-table td:hover {
+  background: #3b4b3b;
+}
+
+.mad-num {
+  font-weight: bold;
+  font-size: 12px;
+  opacity: 0.8;
+  color: #C3D941;
+}
+
+.mad-text {
+  font-size: 12px;
+  opacity: 0.7;
+  color: #ccc;
+  line-height: 1.2;
+}
+
+/* 🔹 未解鎖格（顯示 ???） */
+.mad-locked .mad-text {
+  display: block;
+}
+
+/* 🔹 已解鎖格（只有數字） */
+.mad-unlocked .mad-text {
+  display: none;
+}
+
+/* 🔹 已解鎖格的備註 Tooltip 效果 */
+.mad-unlocked::after {
+  content: attr(data-note);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2e2e2e;
+  color: #C3D941;
+  padding: 5px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in-out;
+  z-index: 10;
+  border: 1px solid #4a5f3c;
+}
+
+/* 滑鼠移上時顯示 tooltip */
+.mad-unlocked:hover::after {
+  opacity: 1;
+}
+</style>
+</div>
+
+
+
+
+
+  <div id="qwe" class="content">
+<p>&nbsp;</p>
+    <p><h2 style="color: #BEBEBE;">防具</h2>
+<p>&nbsp;</p>
+
+<div style="display:flex; justify-content:center; margin-top:20px;">
+  <table style="border-collapse:collapse; text-align:center; font-family:'Microsoft JhengHei'; border-radius:12px; overflow:hidden; border:1px solid #ccc; min-width:480px;">
+    <thead>
+      <tr style="border-bottom:1px solid #ccc;">
+        <th style="padding:10px;"> 防具</th>
+        <th style="padding:10px;"> 護甲值</th>
+        <th style="padding:10px;"> 備註</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:8px;">厚外套</td><td>+1</td><td>一般衣物，提供輕微防護。</td></tr>
+      <tr><td style="padding:8px;">安全帽</td><td>+2</td><td>基本頭部防護，可減輕鈍擊傷害。</td></tr>
+      <tr><td style="padding:8px;">鋼盔</td><td>+3</td><td>軍用頭盔，防禦頭部攻擊效果佳。</td></tr>
+      <tr><td style="padding:8px;">現代軍用頭盔</td><td>+5</td><td>高強度頭盔，能抵擋部分彈片衝擊。</td></tr>
+      <tr><td style="padding:8px;">防彈背心</td><td>+8</td><td>降低槍械傷害（主要保護軀幹）。</td></tr>
+      <tr><td style="padding:8px;">戰備裝</td><td>+12</td><td>全身戰術裝備，行動受限但防護極高。</td></tr>
+      <tr><td style="padding:8px;">防彈玻璃</td><td>15</td><td>-</td></tr>
+      <tr><td style="padding:8px;">厚鋼板</td><td>20</td><td>-</td></tr>
+
+
+
+    </tbody>
+  </table>
+</div>
+
+
 
     <p></p>
 
@@ -1210,8 +1661,7 @@ tbody tr:last-child td {
 
 
 
-<p>&nbsp;</p>
-<h2 style="color: #D3FF93;">武器</h2>
+<h2 style="color: #BEBEBE;">武器</h2>
 <p>&nbsp;</p>
 <div style="display:flex; justify-content:center; margin-top:20px;">
   <table style="border-collapse:collapse; text-align:center; font-family:'Microsoft JhengHei'; border-radius:12px; overflow:hidden; border:1px solid #ccc; min-width:500px;">
@@ -1231,9 +1681,10 @@ tbody tr:last-child td {
       <tr><td style="padding:8px;">鏈鋸⚔️</td><td>1d10</td><td>0–2</td><td>造成高傷害附加眩暈或割裂特效</td></tr>
       <tr><td style="padding:8px;">鞭⚔️</td><td>1d3</td><td>0–3</td><td>特殊效果比如綑綁或奪取武器等</td></tr>
       <tr><td style="padding:8px;">長矛</td><td>1d6</td><td>0–2</td><td>一回合最多點射3發</td></tr>
-      <tr><td style="padding:8px;">手槍</td><td>1d6 ×6</td><td>0–25</td><td>一回合最多點射3發</td></tr>
+      <tr><td style="padding:8px;">手槍</td><td>1d6 ×6</td><td>0–25</td><td>可持雙槍/一回合最多點射3發</td></tr>
       <tr><td style="padding:8px;">步槍</td><td>1d8 ×5</td><td>0–100</td><td>一回合最多點射3發</td></tr>
-      <tr><td style="padding:8px;">機槍</td><td>2d6 ×10 / 2d8×20</td><td>0–200</td><td>輕型/中型(需要腳架)可掃射 </td></tr>
+      <tr><td style="padding:8px;">衝鋒槍</td><td>1d10 ×10</td><td>0–40</td><td>可持雙槍/可掃射 </td></tr>
+      <tr><td style="padding:8px;">機槍</td><td>2d8 ×20</td><td>0–200</td><td>需要腳架/可掃射 </td></tr>
       <tr><td style="padding:8px;">散彈槍</td><td>6d6</td><td>0–25</td><td>每5公尺傷害減2d6</td></tr>
       <tr><td style="padding:8px;">狙擊槍</td><td>3d6 ×5</td><td>1-500</td><td>高傷害，射程遠，一回合只能射出一發</td></tr>
       <tr><td style="padding:8px;">火焰噴射器</td><td>4D6 / 2D6(波及)×2</td><td>0-10</td><td>造成燃燒狀態+恐慌可掃射</td></tr>
@@ -1243,28 +1694,200 @@ tbody tr:last-child td {
   </table>
 </div>
 <p>&nbsp;</p>
-<p style="opacity: 0.5">（狙擊槍長度就有1公尺。火焰噴射器離太近會燒到自己但也沒關係對吧！在爆炸10m內會被炸到很讚吧！）？</p>
+<p style="opacity: 0.5">（狙擊槍長度就有1公尺。火焰噴射器離太近會燒到自己但也沒關係對吧！）？</p>
+<p>&nbsp;</p></p>
+  </div>
+
+
+
+
+
+
+
+  <div id="asd" class="content">
+
+<p>&nbsp;</p>
+
+<h2 style="color: #A6A6D2;">偷襲</h2>
+    <p>1.潛行成功：埋伏或悄悄接近目標突襲、遠處狙擊等等。</p>
+    <p>2.突發攻勢：聆聽、心理學、發現失敗時，無防備下突然遭到攻擊。</p>
+<p style="font-weight: bold;    font-size: 17px;">- 偷襲成功可以增加一顆優勢骰/優勢骰可與劣勢骰相互抵銷 -</p>
+<p>&nbsp;</p>
+
+<h2 style="color: #9DDDD2;">反擊</h2>
+    <p>對立擲骰僅限於近戰，遭受遠距離攻擊時無法執行反擊，可以選擇防禦、閃避或找尋掩護。</p>
+    <p>反擊就是所謂對抗骰，優先看成功等級，等級相同ex.都是極限成功，那就直接比較骰出的數字。</p>
+    <p>數字小的勝，由勝者對敗者造成傷害。因為反擊方處在被動且無預謀狀態，因此無法造成重大傷害。</p>
+<p style="opacity: 0.5">（特殊狀況除外：ex. 反擊方骰出大成功!! or 攻擊方大失敗!!）</p>
+
+<p>&nbsp;</p>
+
+<h2 style="color: #C2C287;">閃避</h2>
+<style>
+  .rule-list {
+    display: table;
+    margin: 0 auto;
+    border-spacing: 0 6px; /* 每行的垂直間距 */
+  }
+
+  .rule-row {
+    display: table-row;
+  }
+
+  .rule-label {
+    display: table-cell;
+    font-weight: bold;
+    color: #CDCD9A; /* 溫和亮點綠 */
+    padding-right: 0.5em;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .rule-text {
+    display: table-cell;
+    text-align: left;
+    opacity: 0.9;
+  }
+</style>
+
+<div class="rule-list">
+  <div class="rule-row">
+    <div class="rule-label">地理劣勢：</div>
+    <div class="rule-text">1. 狹窄空間、背靠牆、坐在有扶手的椅子上、腳下是高過膝的水，扣除相對應閃避%。</div>
+  </div>
+  <div class="rule-row">
+    <div class="rule-label"></div>
+    <div class="rule-text">2. 跟其他人站太近、身邊有雜物，每增加一個障礙物 -10% 閃避。</div>
+  </div>
+  <div class="rule-row">
+    <div class="rule-label">地理優勢：</div>
+    <div class="rule-text"> 有掩體、隔著桌子椅子、身旁有根柱子等 +10% 閃避。</div>
+  </div>
+  <div class="rule-row">
+    <div class="rule-label">閃避遠距攻擊：</div>
+    <div class="rule-text">1. 狙擊：需要提前覺察，否則無法進行閃避。</div>
+  </div>
+  <div class="rule-row">
+    <div class="rule-label"></div>
+    <div class="rule-text">2. 遠距離：持槍者在可見可聞的方位時，可進行閃避；非槍械 +20% 閃避。</div>
+  </div>
+  <div class="rule-row">
+    <div class="rule-label"></div>
+    <div class="rule-text">3. 中距離：持槍者在可見可聞的方位時，可進行閃避；非槍械 +5% 閃避。</div>
+  </div>
+  <div class="rule-row">
+    <div class="rule-label"></div>
+    <div class="rule-text">4. 近距離：非槍械遠距武器攻擊可以閃避，槍枝視情況由KP判斷能否閃避。</div>
+  </div>
+</div>
 <p>&nbsp;</p>
 
 
+<h2 style="color: #B182BF;">投擲</h2>
+    <p>任何物件都可以投擲，若是尚未探索區域不知有何物件，可以骰INT（智力）看能摸到什麼東西。</p>
+    <p>如果明顯是空無一物的地方ＫＰ會直接告訴你，你可以選擇投擲自己攜帶的東西，比如外套之類的遮擋對方視線。</p>
+    <p>投擲長矛命中調整：（投擲技能+矛技能÷2）</p>
+<p>技能"矛" 60% 以上擲矛命中 +10%，技能"矛" 80% 以上擲矛命中 +20%，技能"矛" 95% 以上擲矛命中 +30%。</p>
+    <p style="opacity: 0.5">擲矛自動無視距離減傷，擲矛最大距離="矛"技能 1% = 1m。</p>
 
-</div>
+
+
+<p>&nbsp;</p>
+  <p><h2 style="color: #BFAD97;">體格</h2>
+    <p>玩家對體格相差３階以上的目標進行近戰攻擊將自動失效。</p>
+    <p>對體格相差２階的目標需要進行兩次劣勢骰。</p>
+    <p>對體格相差１階的目標需要進行一次劣勢骰。</p>
+    <p>戰略例如擒拿、關節技、使用高度熟練冷兵器等...若PC角色設定跟飾演都非常到位可最高免除兩顆劣勢骰。</p>
+<p >遠距攻擊命中:體型 -2 以下吃一顆劣勢骰；體型 4 以上贈一顆優勢骰。</p>
+<p>&nbsp;</p>
+
+
+  <p><h2 style="color: #B5DCAD;">移動</h2>
+    <p>戰鬥中時每回合可以MOV(移動) : 7 / 8 / 9</p>
+    <p>當你在敵人旁邊想要離開會被敵人攻擊，敵人從你身邊逃脫時你也可以對敵人做出攻擊。</p>
+    <p></p>
+
+<p>&nbsp;</p>
 </p>
+</div>
+
+
+
+
+
+
+  <div id="zxc" class="content">
+    <h3>Hunger Resistance (HR)</h3>
+    <p>HR（耐餓） =  CON(體質) + POW(意志) ÷ 2 </p>
+    <p>舉例：CON(體質)50 + POW(意志)70 ÷ 2 = HR(耐餓)60</p>
+    <p>依照 HR(耐餓) 60 = 現實世界每 60 分鐘必須進食一次，否則上一層飢餓 Debuff。  </p>
+    <p>不同食物能補充不同 min ( 由 KP 判斷 )，扛餓不可超過 60 ( 該角色 HR 最高值 )。</p>
+    <p>累積進食超過最高值 60 就需要做一次小休，小休將會停止行動3個回合，去完成WC。</p>
+    <p>⚠️不小休的話會憋不住而失禁哦！遭人目睹大便失禁扣除 1-3 SAN !</p>
+<p style="opacity: 0.5">- 若有身分/名氣、好面子、自尊心強等特徵將扣除更多 -</p>
+<p>&nbsp;</p>
+
+    <h3>Thirst Resistance (TR)</h3>
+    <p>沿用範例 :CON(體質)50 & POW(意志)70 </p>
+    <p>CON(體質) = TR(耐渴) = 50 = 現實世界每過 50 分鐘需要喝一次水，否則上一層口渴 Debuff。</p>
+    <p>飢餓依照HR(耐餓) 60 = 現實世界每 60 分鐘必須進食一次，否則上一層空腹 Debuff。  </p>
+    <p>不同飲品跟用量能補充不同 min ( 由 KP 判斷 )，同樣不可超過 50 該角色 TR 最高值。</p>
+    <p>KP 判斷角色沒有流失水分情況下喝滿 50 即需要去方便：女/雙性=2回合　男/無性=1回合</p>
+    <p>⚠️小便失禁遭人目睹將扣除 0-1 SAN !</p>
+<p style="opacity: 0.5">- 特殊情況仍有機會扣除更多 -</p>
+
+
+<p>&nbsp;</p>
+    <h3>Debuff & death</h3>
+    <p>口渴 Debuff 全檢定-5 % / 空腹 Debuff 動態檢定 -5 % </p>
+    <p>沿用範例 : CON(體質)50 + POW(意志)70 ÷ 2 = HR(耐餓)60 </p>
+    <p>75 分鐘不喝水 = 脫水 Debuff 全檢定-20% </p>
+    <p>90 分鐘不進食 = 影養不良 Debuff 全檢定-20% </p>
+    <p>100 分鐘沒水喝 = 嚴重脫水 全檢定-40 做一次 SAN值檢定 1d5</p>
+    <p>120 分鐘沒進食 = 衰弱 全檢定-40 做一次 SAN值檢定 1d5</p>
+    <p>125 分鐘沒水喝 = 瀕死 每回合 CON/END 檢定 失敗即死亡</p>
+    <p>150 分鐘沒進食 = 瀕死 每回合 CON/END 檢定 失敗即死亡</p>
+
+<p>&nbsp;</p>
+
+    <h3>Scars and Hunger</h3>
+    <p>在戰鬥中受傷每 1HP 傷害 HR -1 min(含最大值)</p>
+    <p>在戰鬥中受傷每 1HP 傷害 TR -2 min(含最大值)</p>
+<p style="opacity: 0.5">（隨著HP的恢復 HR & TR 最大值也會恢復）</p>
+    <p>若在該場戰鬥中重傷 or 失去身體部位將會進入高代謝狀態：</p>
+    <p>KP將視情況扣除你的 HR & TR 最大值！ex.失去一條手臂-5 HR/TR 最大值-40%</p><p>&nbsp;</p>
+
+<p style="opacity: 0.5">" 珍愛生命人人有責 "</p>
+
+
+<p>&nbsp;</p>
   </div>
 
-  <div id="chase" class="content">
-    <h2>追 & 逃</h2>
-    <p>想逃？</p>
+
+
+
+
+
+  <div id="luck" class="content">
+    <h2>運氣與實力...</h2>
+    <p>看來你運氣不太好呢年輕人。</p>
   </div>
 
-  <div id="san" class="content">
-    <h2>SAN</h2>
-    <p>未滿１８歲請勿瀏覽。</p>
-  </div>
+
+
+
+
 
   <button id="topBtn" class="top-button" aria-label="回到頁面頂端" title="回到頂端">TOP</button>
 
+
   <script>
+
+
+
+
+
+
     function showContent(id, btn) {
       // 切換內容
       document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
@@ -1297,3 +1920,4 @@ tbody tr:last-child td {
   });
 </script>
 </html>
+
