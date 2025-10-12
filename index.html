@@ -537,6 +537,10 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+
+
+
+
 </style>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -550,6 +554,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const dropdowns = document.querySelectorAll('.dropdown');
+
+  dropdowns.forEach(dropdown => {
+    dropdown.addEventListener('click', e => {
+      // 只在觸控裝置或小螢幕啟用
+      if ('ontouchstart' in window || window.innerWidth <= 768) {
+        e.stopPropagation();
+        const menu = dropdown.querySelector('.dropdown-content');
+        const visible = window.getComputedStyle(menu).display === 'block';
+        // 收起所有選單
+        document.querySelectorAll('.dropdown-content').forEach(m => m.style.display = 'none');
+        // 切換目前這個
+        menu.style.display = visible ? 'none' : 'block';
+      }
+    });
+  });
+
+  // 點擊其他地方時關閉所有下拉選單
+  document.addEventListener('click', () => {
+    if ('ontouchstart' in window || window.innerWidth <= 768) {
+      document.querySelectorAll('.dropdown-content').forEach(m => m.style.display = 'none');
+    }
+  });
+});
+
+
+
 </script>
 
 <div class="navbar-container">
@@ -1841,7 +1874,6 @@ tbody tr:last-child td {
 
   <div id="asd" class="content">
 
-<p>&nbsp;</p>
 
 <h2 style="color: #A6A6D2;">偷襲</h2>
     <p>1.潛行成功：埋伏或悄悄接近目標突襲、遠處狙擊等等。</p>
@@ -2053,4 +2085,5 @@ tbody tr:last-child td {
   });
 </script>
 </html>
+
 
