@@ -630,12 +630,12 @@ document.addEventListener('DOMContentLoaded', () => {
     <p>骰五次３Ｄ６×５自由分配給STR(力量)、CON(體質)、DEX(敏捷)、APP(外貌)、POW(意志)。</p>
     <p>骰三次（２Ｄ６＋６）×５自由分配給SIZ(體型)、INT(智力)、EDU(教育)。</p>
     <p>最後再骰一次３Ｄ６×５做為角色初始LUK(幸運)。</p>
+    <p style="opacity: 0.5">POW(意志)=SAN　POW(意志)÷5=MP　SIZ＋CON÷10=HP　</p>
 <p>&nbsp;</p>
     <p>Ｂ－２依序骰點</p>
     <p style="opacity: 0.9; color: #C3D941; font-weight: bold; font-size: 17px;">依序骰點獎勵！每選項只要未滿８０就另外＋１！</p>
     <p>依照順序骰並直接填入，順序分別是：</p><p>STR(力量) = ３Ｄ６×５</p>CON(體質) = ３Ｄ６×５</p>DEX(敏捷) = ３Ｄ６×５</p>APP(外貌) = ３Ｄ６×５</p>POW(意志) = ３Ｄ６×５</p>LUK(幸運) = ３Ｄ６×５</p>
     INT(智力) = （２Ｄ６＋６）×５</p>EDU(教育) = （２Ｄ６＋６）×５</p>SIZ(體型) = （２Ｄ６＋６）×５</p>
-    <p style="opacity: 0.5">POW(意志)=SAN　POW(意志)÷5=MP　SIZ＋CON÷10=HP　</p>
 <p>&nbsp;</p>
     <h2>二、基本資料</h2>
 <p>&nbsp;</p>
@@ -1251,6 +1251,7 @@ tbody tr:last-child td {
 <p>&nbsp;</p>
   <div class="combat-section">
 <h2 style="color: #FF5C54;">受傷</h2>
+<p>SIZ＋CON÷10=HP</p>
     <p><strong> HP / 生命值</strong>：角色受傷時扣除對應點數。</p>
     <p style="opacity: 0.9; color: #E96E67; font-weight: bold; font-size: 17px;"><strong>重傷判定</strong>：</p>
  
@@ -1819,6 +1820,11 @@ tbody tr:last-child td {
 
 </style>
 <p>&nbsp;</p>
+
+<p style="opacity: 0.5">＊POW(意志)=SAN＊</p>
+
+<p>&nbsp;</p>
+
     <h2>瘋狂時長</h2>
 <p>每一次發狂：1D10 回合</p>
 <p>１、臨時瘋狂：單次檢定損失５以上SAN值，且INT(智力)檢定成功。</p>
@@ -1827,7 +1833,7 @@ tbody tr:last-child td {
 <p style="opacity: 0.5">＊發瘋時的角色幾乎都會失去控制＊</p>
 <p>&nbsp;</p>
     <h2>創口衝擊</h2>
-<p>手部變形、手部骨折、呼吸困難、大量失血：-1D2 SAN</p>
+<p>腿部變形、手部骨折、呼吸困難、大量失血：-1D2 SAN</p>
 <p>鼻樑折斷、眼部創傷、無法呼吸、內臟破裂：-1D4 SAN</p>
 <p>內臟外露、截肢斷肢、嚴重燒傷、粉碎骨折：-1D6 SAN</p>
 <p>徹底毀容、失明失聰、脊椎斷裂、死亡恐懼：-1D8 SAN</p>
@@ -2063,7 +2069,7 @@ tbody tr:last-child td {
 <p>&nbsp;</p>
 
     <h3>Thirst Resistance (TR)</h3>
-    <p>沿用範例 :CON(體質) = 50 & POW(意志) = 70 </p>
+    <p>沿用範例 :CON(體質) = 耐渴(TR)50 </p>
     <p>CON(體質) = TR(耐渴) = 50 = 現實世界每過 50 分鐘需要喝一次水，否則上一層口渴 Debuff。</p>
     <p>飢餓依照HR(耐餓) 60 = 現實世界每 60 分鐘必須進食一次，否則上一層空腹 Debuff。  </p>
     <p>不同飲品跟用量能補充不同 min ( 由 KP 判斷 )，同樣不可超過 50 該角色 TR 最高值。</p>
